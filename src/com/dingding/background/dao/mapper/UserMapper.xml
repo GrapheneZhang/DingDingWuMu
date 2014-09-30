@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.UserDao">
+
+<resultMap id="UserList" type="User">
+	<id property="id" column="ID" jdbcType="INTEGER"/>
+	<result property="loginName" column="LOGINNAME" jdbcType="VARCHAR"/>
+	<result property="userName" column="USERNAME" jdbcType="VARCHAR"/>
+	<result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+	<result property="privilege" column="PRIVILEGE" jdbcType="CHAR"/>
+	<result property="idCard" column="IDCARD" jdbcType="VARCHAR"/>
+</resultMap>
+
+
+<!-- ProcessingStart -->
+<!-- 1.1 查询所有管理员 -->
+<select id="selectAll" resultMap="UserList">
+	select * from wm_user  
+</select>
+<!-- 1.2 条件查询 -->
+<select id="list" parameterType="User" resultMap="UserList">
+	select * from wm_user
+	<where>
+		<if test="loginName!=null and loginName!=''">
+			and LOGINNAME LIKE CONCAT(CONCAT('%', #{loginName}),'%')
+		</if>
+		<if test="userName!=null and userName!=''">
+			and USERNAME LIKE CONCAT(CONCAT('%', #{userName}),'%')
+		</if>
+		<if test="idCard!=null and idCard!=''">
+			and IDCARD LIKE CONCAT(CONCAT('%', #{idCard}),'%')
+		</if>
+	</where>
+	order by ID 
+</select>
+
+<!-- 2 获取：通过Id -->
+<select id="getById" parameterType="int" resultType="User">
+	select * from wm_user where ID=#{id}
+</select>
+
+<!-- 3 添加 -->
+<insert id="add" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+	insert into wm_user(LOGINNAME,USERNAME,PASSWORD,IDCARD)
+		values(#{loginName},#{userName},#{password},#{idCard})
+</insert>
+
+<!-- 4 删除 -->
+<delete id="delete" parameterType="int">
+	delete from wm_user where id=#{id}
+</delete>
+
+<!--5 执行修改操作的SQL语句。id和parameterType属性以及“#{}”的形式的含义与上述insert语句一致。-->
+<update id="update" parameterType="User">
+	update wm_user set 
+		LOGINNAME=#{loginName},
+		USERNAME=#{userName},
+		PASSWORD=#{password},
+		IDCARD=#{idCard}
+	where id=#{id}
+</update>
+
+<!-- 6.1 loginName唯一性验证 -->
+<select id="countByLoginName" parameterType="String" resultType="int">
+	select * from wm_user where LOGINNAME=#{loginName}
+</select>
+<!-- 6.2 idCard唯一性验证 -->
+<select id="countByIdCard" parameterType="String" resultType="int">
+	select * from wm_user where IDCARD=#{idCard}
+</select>
+
+</mapper>

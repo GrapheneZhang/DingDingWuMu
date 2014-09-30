@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.ProductDao">
+
+<resultMap id="ProductList" type="Product">
+
+<id property="id" column="id"/>
+
+<result property="name" column="name"/>
+<result property="protypeName" column="proTypename"/>
+<result property="productDes" column="productdes"/>
+<result property="pictureUrl" column="pictureurl"/>
+<result property="productState" column="productstate"/>
+</resultMap>
+
+<insert id="add" parameterType="Product"
+useGeneratedKeys="true" keyProperty="id">
+insert into wm_product(name,protypeid,productdes,pictureurl,productstate)
+values(#{name},#{protypeId},#{productDes},#{pictureUrl},#{productState})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_product where id=#{id}
+</delete>
+
+<update id="update" parameterType="Product">
+update wm_product set name=#{name},
+protypeid=#{protypeId},
+productdes=#{productDes},
+pictureurl=#{pictureUrl},
+productstate=#{productState}
+where id=#{id}
+</update>
+
+<select id="selectAll"  resultMap="ProductList">
+select *
+from wm_product  
+</select>
+
+<select id="selectType" parameterType="String"   resultMap="ProductList">
+select *
+from wm_product  where protypename like #{proTypeName}
+</select>
+
+<select id="selectName" parameterType="String"   resultMap="ProductList">
+select *
+from wm_product  where name like #{proName}
+</select>
+</mapper>

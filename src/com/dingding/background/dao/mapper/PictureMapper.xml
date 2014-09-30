@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.PictureDao">
+
+<resultMap id="PictureList" type="Picture">
+
+<id property="id" column="id"/>
+
+<result property="pictureUrl" column="pictureurl"/>
+<result property="protypeName" column="protypename"/>
+</resultMap>
+
+<insert id="add" parameterType="Picture"
+useGeneratedKeys="true" keyProperty="id">
+insert into wm_picture(pictureurl,protypename)
+values(#{pictureUrl},#{pictureUrl})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_picture where id=#{id}
+</delete>
+
+<update id="update" parameterType="Picture">
+update wm_picture set pictureurl=#{pictureUrl},
+protypename=#{protypeName}
+where id=#{id}
+</update>
+
+<select id="selectAll"  resultMap="PictureList">
+select *
+from wm_picture  
+</select>
+
+<select id="selectType" parameterType="String"   resultMap="PictureList">
+select *
+from student  where protypename like #{proTypeName}
+</select>
+</mapper>

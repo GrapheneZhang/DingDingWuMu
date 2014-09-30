@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.OperateLogDao">
+
+<resultMap id="OperateLogList" type="OperateLog">
+
+<id property="id" column="id"/>
+
+<result property="userid" column="userId"/>
+<result property="loginName" column="loginname"/>
+<result property="operateType" column="operatetype"/>
+<result property="operateDis" column="operatedis"/>
+<result property="operateTime" column="operatetime"/>
+</resultMap>
+
+
+<insert id="add" parameterType="OperateLog"
+useGeneratedKeys="true" keyProperty="id">
+insert into wm_operate_log(userid,loginname,operatetype,operatedis,operatetime)
+values(#{userId},#{loginName},#{operateType},#{operateDis},#{operateTime})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_operate_log where id=#{id}
+</delete>
+
+<select id="selectAll"  resultMap="OperateLogList">
+select *
+from wm_operate_log  
+</select>
+
+<select id="selectLoginName" resultMap="OperateLogList">
+select *
+from student  where loginname like #{loginName}
+</select>
+
+<select id="selectDate"  parameterType="Date"  resultMap="OperateLogList">
+select *
+from student  where  createtime   between  #{begin} and  #{end}
+</select>
+
+</mapper>

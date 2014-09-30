@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.ProductTypeDao">
+
+<resultMap id="ProductTypeList" type="ProductType">
+
+<id property="id" column="id"/>
+
+<result property="name" column="name"/>
+<result property="parentId" column="parentId"/>
+<result property="protypeState" column="protypestate"/>
+</resultMap>
+
+<insert id="add" parameterType="ProductType"
+useGeneratedKeys="true" keyProperty="id">
+insert into wm_producttype(name,parentid,protypestate)
+values(#{name},#{parentId},#{protypeState})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_producttype where id=#{id}
+</delete>
+
+<update id="update" parameterType="ProductType">
+update wm_producttype set name=#{name},
+parentid=#{parentId},
+protypestate=#{protypeState},
+where id=#{id}
+</update>
+
+<select id="selectAll"  resultMap="ProductTypeList">
+select *
+from wm_producttype  
+</select>
+
+<select id="selectType" parameterType="int"   resultMap="ProductTypeList">
+select *
+from wm_product  where id=#{id}
+</select>
+</mapper>

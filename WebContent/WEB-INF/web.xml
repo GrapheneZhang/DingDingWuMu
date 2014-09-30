@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>NewFramework</display-name>
+  
+  <!-- 1、监听加载Spring配置文件 ，进行加载关键配置文件，这些配置文件是springIoc起作用的关键-->
+		  <listener>
+			<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		  </listener>
+		  <context-param>
+		  	<param-name>contextConfigLocation</param-name>
+		  	<param-value>/WEB-INF/classes/springMVC-servlet.xml,/WEB-INF/classes/mybatis-spring.xml</param-value>
+		  </context-param>
+  
+  <!-- 2、指定SpringMVC的核心Servlet -->
+		  <servlet>
+		  	<servlet-name>SpringMVC</servlet-name>
+		  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		  	<init-param>
+		  		<param-name>contextConfigLocation</param-name>
+		  		<param-value>/WEB-INF/classes/springMVC-servlet.xml</param-value>
+		  	</init-param>
+		  	<load-on-startup>1</load-on-startup><!-- 此标签一定要在init-param之后 -->
+		  </servlet>
+  
+		    <servlet-mapping>              
+		 	<servlet-name>SpringMVC</servlet-name>              
+			<url-pattern>/</url-pattern>       
+		  </servlet-mapping>
+  
+   <!-- 3、解决工程编码过滤器 -->  
+		  <filter>  
+		    <filter-name>characterEncodingFilter</filter-name>
+		   	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+		       <init-param>  
+		           <param-name>encoding</param-name>  
+		           <param-value>UTF-8</param-value>  
+		       </init-param>  
+		  </filter>    
+		    
+		  <filter-mapping>  
+		    <filter-name>characterEncodingFilter</filter-name>  
+		    <url-pattern>/*</url-pattern>
+		  </filter-mapping>         
+  
+  <!-- 4、配置错误页面--> 
+		  <error-page>  
+		    <exception-type>java.lang.Throwable</exception-type>  
+			<location>/commons/jsp/error500.jsp</location>
+		  </error-page>
+		  <error-page>  
+			<error-code>500</error-code>  
+			<location>/commons/jsp/error500.jsp</location>  
+		  </error-page>   
+		  <error-page>  
+			<error-code>403</error-code>  
+			<location>/commons/jsp/error403.jsp</location>  
+		  </error-page>  
+		  <error-page>  
+			<error-code>404</error-code>  
+			<location>/commons/jsp/error404.jsp</location>  
+		  </error-page>  
+  
+    <!-- 5、配置首页--> 
+		  <welcome-file-list>
+		    <welcome-file>index.jsp</welcome-file>
+		  </welcome-file-list>
+  
+</web-app>

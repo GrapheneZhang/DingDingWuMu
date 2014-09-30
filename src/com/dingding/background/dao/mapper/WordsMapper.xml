@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.WordsDao">
+
+<resultMap id="WordsList" type="Words">
+
+<id property="id" column="id"/>
+
+<result property="title" column="title"/>
+<result property="content" column="content"/>
+<result property="createTime" column="createtime"/>
+<result property="tel" column="tel"/>
+<result property="qq" column="qq"/>
+<result property="name" column="name"/>
+</resultMap>
+
+
+<insert id="add" parameterType="Words"
+useGeneratedKeys="true" keyProperty="id">
+insert into wm_words(title,content,createtime,tel,qq,name)
+values(#{title},#{content},#{createTime},#{tel},#{qq},#{name})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_words where id=#{id}
+</delete>
+
+<select id="selectAll"   resultMap="WordsList">
+select *
+from wm_words  
+</select>
+
+<select id="selectDate" parameterType="Date"  resultMap="WordsList">
+select *
+from wm_words  where createtime between  #{begin} and  #{end}
+</select>
+</mapper>

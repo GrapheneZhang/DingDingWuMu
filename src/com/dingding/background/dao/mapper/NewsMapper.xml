@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.NewsDao">
+
+<resultMap id="NewsList" type="News">
+	<id property="id" column="id" jdbcType="INTEGER"/>
+	<result property="title" column="title" jdbcType="VARCHAR"/>
+	<result property="content" column="content" jdbcType="VARCHAR"/>
+	<result property="authorId" column="authorid" jdbcType="INTEGER"/>
+	<result property="authorName" column="authorname" jdbcType="VARCHAR"/>
+	<result property="createTime" column="createtime" jdbcType="DATE"/>
+</resultMap>
+
+<!-- ProcessingStart -->
+<!-- 1 条件查询 -->
+<select id="list" parameterType="News" resultMap="NewsList">
+	select * from wm_news
+	<where>
+		<if test="title!=null and title!=''">
+			and title LIKE CONCAT(CONCAT('%', #{title}),'%')
+		</if>
+		<if test="content!=null and content!=''">
+			and content LIKE CONCAT(CONCAT('%', #{content}),'%')
+		</if>
+		<if test="authorId!=null and authorId!=''">
+			and authorId LIKE CONCAT(CONCAT('%', #{authorId}),'%')
+		</if>
+		<if test="authorName!=null and authorName!=''">
+			and authorName LIKE CONCAT(CONCAT('%', #{authorName}),'%')
+		</if>
+		<if test="createTimeStart!=null and createTimeStart!=''">
+			<![CDATA[
+				and to_char(createTime,'YYYY-MM-DD hh24:mi:ss') >= #{createTimeStart}
+			]]>
+		</if>
+		<if test="createTimeEnd!=null and createTimeEnd!=''">
+			<![CDATA[
+				and to_char(createTime,'YYYY-MM-DD hh24:mi:ss') <= #{createTimeEnd}
+			]]>
+		</if>
+	</where>
+	order by ID
+</select>
+
+<!-- 2 获取：通过Id -->
+<select id="getById" parameterType="int" resultType="News">
+	select * from wm_news where ID=#{id}
+</select>
+
+<!-- 3 添加 -->
+<insert id="add" parameterType="News" useGeneratedKeys="true" keyProperty="id">
+	insert into wm_news(title,content,authorId,IDCARD)
+		values(#{loginName},#{userName},#{password},#{idCard})
+</insert>
+
+<!-- 4 删除 -->
+<delete id="delete" parameterType="int">
+	delete from wm_news where id=#{id}
+</delete>
+
+<!--5 执行修改操作的SQL语句。id和parameterType属性以及“#{}”的形式的含义与上述insert语句一致。-->
+<update id="update" parameterType="News">
+	update wm_news set 
+		title=#{title},
+		content=#{content}
+	where id=#{id}
+</update>
+
+<!-- <insert id="add" parameterType="News" useGeneratedKeys="true" keyProperty="id">
+insert into wm_news(title,content,authorid,authorname,createtime)
+values(#{title},#{content},#{authorId},#{authorName},#{createTime})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_news where id=#{id}
+</delete>
+
+执行修改操作的SQL语句。id和parameterType
+属性以及“#{}”的形式的含义与上述insert语句一致。
+<update id="update" parameterType="News">
+update wm_news set title=#{title},
+content=#{content},
+authorid=#{authorId},
+authorname=#{authorName}
+where id=#{id}
+</update>
+
+
+<select id="selectAllTitle"  parameterType="int"  resultMap="NewsList">
+select *
+from wm_news  
+</select>
+
+<select id="selectDateTitle" resultMap="NewsList">
+select *
+from wm_news  where createtime   between  #{begin} and  #{end}
+</select>
+
+<select id="selectOddDetail"  parameterType="int"  resultMap="NewsList">
+select *
+from student  where id=#{id}
+</select> -->
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingding.background.dao.TechDao">
+
+<resultMap id="TechList" type="Tech">
+
+<id property="id" column="id"/>
+
+<result property="title" column="title"/>
+<result property="content" column="content"/>
+</resultMap>
+
+<insert id="add" parameterType="Tech"
+useGeneratedKeys="true" keyProperty="id">
+insert into wm_tech(title,content)
+values(#{title},#{content})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from wm_tech where id=#{id}
+</delete>
+
+<update id="update" parameterType="Tech">
+update wm_tech set title=#{title},
+content=#{content}
+where id=#{id}
+</update>
+
+<select id="selectAll"  resultMap="TechList">
+select *
+from wm_tech  
+</select>
+</mapper>

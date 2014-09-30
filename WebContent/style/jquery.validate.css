@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+/* jquery.validate样式全局定义
+ * author:ZhangYaxu
+ * Date:20140902
+*/
+label.error {
+	color: red;
+}
