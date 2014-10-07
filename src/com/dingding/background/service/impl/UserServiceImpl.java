@@ -63,8 +63,8 @@ public class UserServiceImpl  extends BaseServiceImpl implements UserService{
 		return result;
 	}
 
-	/**2.1
-	 * Describe:新增页面
+	/**5
+	 * Describe:修改
 	 * Parameters:
 	 * @return:ModelAndView
 	 */
@@ -78,6 +78,15 @@ public class UserServiceImpl  extends BaseServiceImpl implements UserService{
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	/**6.1
+	 * Describe:登录
+	 * Parameters:
+	 * @return:User
+	 */
+	public User login(User user) {
+		return userDao.getByLoginNameAndPassword(user);
 	}
 
 	
@@ -104,5 +113,6 @@ public class UserServiceImpl  extends BaseServiceImpl implements UserService{
 		}
 		return result;
 	}
+
 
 }

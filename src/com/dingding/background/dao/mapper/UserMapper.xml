@@ -61,11 +61,16 @@
 	where id=#{id}
 </update>
 
-<!-- 6.1 loginName唯一性验证 -->
+<!-- 6.1 登录 -->
+<select id="getByLoginNameAndPassword" parameterType="User" resultType="User">
+	select * from wm_user where LOGINNAME=#{loginName} and PASSWORD=#{password}
+</select>
+
+<!-- 10.1 loginName唯一性验证 -->
 <select id="countByLoginName" parameterType="String" resultType="int">
 	select * from wm_user where LOGINNAME=#{loginName}
 </select>
-<!-- 6.2 idCard唯一性验证 -->
+<!-- 10.2 idCard唯一性验证 -->
 <select id="countByIdCard" parameterType="String" resultType="int">
 	select * from wm_user where IDCARD=#{idCard}
 </select>

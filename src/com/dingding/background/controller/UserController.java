@@ -4,7 +4,9 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -128,6 +130,59 @@ public class UserController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**5.1
+	 * Describe:登录页面
+	 * Parameters:
+	 * @return:String
+	 */
+	@RequestMapping(value="/loginUI")
+	public String loginUI(){
+		return "background/user/login";
+	} 
+	/**5.2
+	 * Describe:登录后台
+	 * Parameters:
+	 * @return:String
+	 */
+	@RequestMapping(value="/login")
+	public String login(HttpServletResponse response,HttpServletRequest request,User loginUser){
+		String result="";
+		try {
+			HttpSession session=request.getSession();
+			if (session==null) {
+				session = request.getSession(true);
+			}
+			User user=userService.login(loginUser);
+			if (user!=null) {
+				session.setAttribute("user", user);//将登录的用户放入session
+				result="background/mainframe/index";
+			}else{//账户密码错误的时候
+				if(session!=null)
+					session.invalidate();			
+				request.setAttribute("message", "您输入的账户或者密码不正确，请重新确认");
+				result="background/user/login";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	/**5.3
+	 * Describe:注销回到登录界面
+	 * Parameters:
+	 * @return:String
+	 */
+	@RequestMapping(value="/logout")
+	public String logout(HttpServletRequest request){
+		try {
+			//清除session内容
+			request.getSession(true).invalidate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "background/user/login";
 	}
 	
 	/**10 唯一性验证**/

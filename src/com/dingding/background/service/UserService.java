@@ -17,4 +17,7 @@ public interface UserService {
 	
 	public boolean countByLoginName(String loginName);//6.1 loginName唯一性验证
 	public boolean countByIdCard(String idCard);//6.2 idCard唯一性验证
+	
+	//登录相关
+	public User login(User user);//登录
 }

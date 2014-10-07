@@ -9,3 +9,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/script/jquery/validate/messages_zh.js"></script>
 
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/jquery.validate.css" />
+
+<!-- bootstrap相关 -->
+<script src="${pageContext.request.contextPath}/style/bootstrap/bootstrap.js"></script>
+<link href="${pageContext.request.contextPath}/style/bootstrap/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/style/background/content.css" rel="stylesheet">

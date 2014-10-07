@@ -20,7 +20,10 @@ public interface UserDao {
 	public Integer delete(int id);//4 删除
 	public Integer update(User user);//5 修改管理员属性，当然是不能修改权限的
 	
-	public int countByLoginName(String loginName);//6.1 loginName唯一性验证
-	public int countByIdCard(String idCard);//6.2 idCard唯一性验证
+	//登录相关
+	public User getByLoginNameAndPassword(User user);//6.1登录
+	
+	public int countByLoginName(String loginName);//10.1 loginName唯一性验证
+	public int countByIdCard(String idCard);//10.2 idCard唯一性验证
 	
 }
