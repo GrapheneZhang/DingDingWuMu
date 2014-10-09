@@ -13,101 +13,69 @@
 <body>
     <div class="main-container-inner">
         <div class="sidebar" id="sidebar">
-            <!-- #sidebar-shortcuts -->
-
             <ul class="nav nav-list">
-                <li>
+                <li class="li1">
                     <a href="#" class="dropdown-toggle">
                         <i class="glyphicon glyphicon-th"></i>
-                        <span class="menu-text">政策信息 </span>
+                        <span class="menu-text">系统管理</span>
                     </a>
-
                     <ul class="submenu">
                         <li>
-                            <a href="informationclassify.html" target="mainFrame">
-                                信息分类
-                            </a>
+                            <a href="${pageContext.request.contextPath}/user/list" target="mainFrame">用户管理</a>
                         </li>
-
                         <li>
-                            <a href="informationmanagement.html" target="mainFrame">
-                                信息管理
-                            </a>
+                            <a href="informationclassify.html" target="mainFrame">操作记录管理 </a>
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="li1">
                     <a href="#" class="dropdown-toggle">
+                        <i class="glyphicon glyphicon-bookmark"></i>
+                        <span class="menu-text">产品信息管理</span>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="productclassify.html" target="mainFrame">产品类别管理</a>
+                        </li>
+                        <li>
+                            <a href="productclassify.html" target="mainFrame">产品管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="li1">
+                    <a href="newmessagelist.html" class="dropdown-toggle" target="mainFrame">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        <span class="menu-text"> 新闻管理 </span>
+                    </a>
+                </li>
+                <li class="li1">
+                    <a href="newmessagelist.html" class="dropdown-toggle" target="mainFrame">
+                        <i class="glyphicon glyphicon-picture"></i>
+                        <span class="menu-text"> 素材库管理 </span>
+                    </a>
+                </li>
+                <li class="li1">
+                    <a href="newmessagelist.html" class="dropdown-toggle" target="mainFrame">
                         <i class="glyphicon glyphicon-book"></i>
-                        <span class="menu-text"> 知识库 </span>
-                    </a>
-
-                    <ul class="submenu">
-                        <li>
-                            <a href="productclassify.html" target="mainFrame">
-                                产品分类
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="productmanagement.html" target="mainFrame">
-                                产品管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="questionlist.html" target="mainFrame">
-                                互动模块
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                模板文档
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a href="newmessagelist.html" class="dropdown-toggle">
-                        <i class="glyphicon glyphicon-earphone"></i>
-                        <span class="menu-text"> QCS服务 </span>
+                        <span class="menu-text"> 知识库管理 </span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="glyphicon glyphicon-phone"></i>
-                        <span class="menu-text">通讯录 </span>
+                <li class="li1">
+                    <a href="newmessagelist.html" class="dropdown-toggle" target="mainFrame">
+                        <i class="glyphicon glyphicon-cloud-upload"></i>
+                        <span class="menu-text"> 上传文件管理 </span>
                     </a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="addressbooklist.html" target="mainFrame">
-                                通讯录管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="addressderive.html" target="mainFrame">
-                                通讯录导出
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-                <li class="active">
-                    <a href="material.html" target="mainFrame">
-                        <i class="glyphicon glyphicon-star"></i>
-                        <span class="menu-text"> 素材库 </span>
+                <li class="li1">
+                    <a href="newmessagelist.html" class="dropdown-toggle" target="mainFrame">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        <span class="menu-text"> 留言板管理 </span>
                     </a>
                 </li>
             </ul>
-            <!-- /.nav-list -->
         </div>
 
     </div>
     <!-- menu end --><!-- menu end -->
 </body>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </html>

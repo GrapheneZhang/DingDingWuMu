@@ -185,6 +185,34 @@ public class UserController extends BaseController{
 		return "background/user/login";
 	}
 	
+	/**6.1
+	 * Describe:跳转到框架子页top
+	 * Parameters:
+	 * @return:String
+	 */
+	@RequestMapping(value="/top")
+	public String top(HttpServletRequest request){
+		return "background/mainframe/top";
+	}
+	/**6.2
+	 * Describe:跳转到框架子页top
+	 * Parameters:
+	 * @return:String
+	 */
+	@RequestMapping(value="/sider")
+	public String sider(HttpServletRequest request){
+		return "background/mainframe/sider";
+	}
+	/**6.1
+	 * Describe:跳转到框架子页top
+	 * Parameters:
+	 * @return:String
+	 */
+	@RequestMapping(value="/main")
+	public String main(HttpServletRequest request){
+		return "background/mainframe/main";
+	}
+	
 	/**10 唯一性验证**/
 	@RequestMapping("/checkUnique")
 	public void checkUnique(HttpServletResponse response,

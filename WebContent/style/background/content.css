@@ -480,8 +480,8 @@ blockquote, blockquote.pull-right {
     margin: 0!important
 }
 .ace-nav>li {
-    line-height: 45px;
-    height: 45px;
+    line-height: 50px;
+    height: 50px;
     border-left: 1px solid #DDD;
     padding: 0;
     position: relative;
@@ -517,7 +517,7 @@ blockquote, blockquote.pull-right {
     padding-left: 5px
 }
 .ace-nav>li.light-blue>a {
-    background-color: #62a8d1
+    background-color: #438eb9;
 }
 .ace-nav>li.light-blue>a:hover, .ace-nav>li.light-blue>a:focus {
     background-color: #579ec8
