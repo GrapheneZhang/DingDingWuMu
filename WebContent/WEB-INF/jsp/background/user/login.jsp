@@ -5,6 +5,7 @@
     <title>登录</title>
     <!-- Bootstrap -->
     <%@ include file="/commons/jsp/commons.jspf" %>
+    <script src="${pageContext.request.contextPath}/script/jquery/jquery.cookie.js"></script>
 </head>
 <body class="login-layout">
 <div class="container">
@@ -16,7 +17,7 @@
                     <span class="red">鼎鼎钨钼</span>
                     <span class="white">后台管理系统</span>
                 </h1>
-                <h4 class="blue">&copy;©鼎鼎钨钼</h4>
+                <h4 class="blue">&copy;鼎鼎钨钼</h4>
 
                 <div class="position-relative">
                     <div id="login-box" class="login-box">
@@ -35,7 +36,8 @@
                                     <span class="white">记住我</span>
                                     <input type="submit" class="btn-info btn-sm fr" value="登录"/>
                                 </div>
-                                <span style="color:red">${message}</span>
+                                <div id="message" style="width:300px;height:9px;color:red;margin-top:10px">${message}</div>
+                                <%-- <span style="color:red">${message}</span> --%>
                             </fieldset>
                         </form>
                     </div>
@@ -51,6 +53,16 @@
 <!-- /.main-container -->
 </body>
 <script type="text/javascript">
+
+$(function(){
+	//设置页面载入的时候，如果cookie存在就填充两个input
+	if ($.cookie('loginName')!=null) {
+		$("#loginName").val($.cookie('loginName'));
+		$("#password").val($.cookie('password'));
+		$("#rememberMe").prop("checked",true);
+	}
+});
+
 /**
 * 验证 提交
 */
@@ -62,13 +74,21 @@ $("#loginForm").validate({
 		password:{
 			required:true
 		}
-	},submitHandler:function(form){
+	},messages: {
+		loginName:{
+			required:"用户名不能为空!"
+		},
+		password:{
+			required:"密码不能为空!"
+		}
+	},
+	errorContainer:"message",
+	errorLabelContainer:$("#message"),
+	submitHandler:function(form){
 		//1 根据时候选择了记住我，对cookie进行操作
-		/* if ($("#rememberMe").prop("checked")) {
-			var cookietime = new Date();
-			cookietime.setTime(date.getTime() + (60 * 60 * 1000));//coockie保存一小时 
-			$.cookie('loginName', $("#loginName").val(),{expires:cookietime}); //设置cookie的值
-			$.cookie('password', $("#password").val(),{expires:cookietime}); //设置cookie的值
+		if ($("#rememberMe").prop("checked")) {
+			$.cookie('loginName', $("#loginName").val(),{expires:1}); //设置cookie的值
+			$.cookie('password', $("#password").val(),{expires:1}); //设置cookie的值
 		}else{
 			if ($.cookie('loginName')!=null&&$.cookie('loginName')!='') {
 				$.cookie('loginName',null);
@@ -76,7 +96,7 @@ $("#loginForm").validate({
 			if ($.cookie('password')!=null&&$.cookie('password')!='') {
 				$.cookie('password',null);
 			}
-		} */
+		}
 		//2 提交
 		$(form).attr("action","${pageContext.request.contextPath}/user/login");
 		form.submit();
