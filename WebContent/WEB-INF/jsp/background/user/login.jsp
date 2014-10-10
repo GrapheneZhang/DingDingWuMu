@@ -31,7 +31,7 @@
                                 </label>
 
                                 <div>
-                                    <input type="checkbox"/>
+                                    <input type="checkbox" id="rememberMe"/>
                                     <span class="white">记住我</span>
                                     <input type="submit" class="btn-info btn-sm fr" value="登录"/>
                                 </div>
@@ -63,8 +63,23 @@ $("#loginForm").validate({
 			required:true
 		}
 	},submitHandler:function(form){
-	     $(form).attr("action","${pageContext.request.contextPath}/user/login");
-		 form.submit();
+		//1 根据时候选择了记住我，对cookie进行操作
+		/* if ($("#rememberMe").prop("checked")) {
+			var cookietime = new Date();
+			cookietime.setTime(date.getTime() + (60 * 60 * 1000));//coockie保存一小时 
+			$.cookie('loginName', $("#loginName").val(),{expires:cookietime}); //设置cookie的值
+			$.cookie('password', $("#password").val(),{expires:cookietime}); //设置cookie的值
+		}else{
+			if ($.cookie('loginName')!=null&&$.cookie('loginName')!='') {
+				$.cookie('loginName',null);
+			}
+			if ($.cookie('password')!=null&&$.cookie('password')!='') {
+				$.cookie('password',null);
+			}
+		} */
+		//2 提交
+		$(form).attr("action","${pageContext.request.contextPath}/user/login");
+		form.submit();
 	}
 });
 </script>
