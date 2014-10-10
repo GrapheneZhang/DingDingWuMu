@@ -21,10 +21,10 @@
 	<context:component-scan base-package="com.dingding.proscenium.controller,com.dingding.proscenium.dao" />
 		     
     <!-- 3 静态资源放行:在web.xml中用另一种方式实现了,此处先注释掉
-    <mvc:resources mapping="/commons/**" location="/commons/" />
-    <mvc:resources mapping="/style/**" location="/style/" />
     <mvc:resources mapping="/script/**" location="/script/" />
     <mvc:resources mapping="/images/**" location="/images/" />-->
+    <mvc:resources mapping="/commons/**" location="/commons/" />
+    <mvc:resources mapping="/style/**" location="/style/" />
      
      
     <!-- 4 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->

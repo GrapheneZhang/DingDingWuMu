@@ -151,9 +151,6 @@ public class UserController extends BaseController{
 		String result="";
 		try {
 			HttpSession session=request.getSession();
-			if (session==null) {
-				session = request.getSession(true);
-			}
 			User user=userService.login(loginUser);
 			if (user!=null) {
 				session.setAttribute("user", user);//将登录的用户放入session

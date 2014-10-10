@@ -29,11 +29,11 @@
                         <!--<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo"/>-->
 								<span class="user-info">
 									<small>用户名:</small>
-									Jason
+									${user.loginName}
 								</span>
                                 <!-- <span class="caret"></span> -->
                     </a>
-                    <li class="light-blue"><a href="#"><small><i class="glyphicon glyphicon-off"></i> &nbsp;注销</small></a></li>
+                    <li class="light-blue"><a id="logout"><small><i class="glyphicon glyphicon-off"></i> &nbsp;注销</small></a></li>
                    
 
                   <!--   <ul class="user-menu pull-right dropdown-menu  dropdown-close">
@@ -66,4 +66,14 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+	$(function(){
+		$("#logout").click(function(){
+			var result=confirm("您确认要注销本次登录吗?");
+			if (result) {
+				window.parent.location.href="${pageContext.request.contextPath}/user/logout";
+			}
+		});
+	});
+</script>
 </html>
