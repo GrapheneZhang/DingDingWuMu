@@ -14,8 +14,8 @@
             <div class="login-container">
                 <h1>
                     <i class="glyphicon glyphicon-leaf green"></i>
-                    <span class="red">鼎鼎钨钼</span>
-                    <span class="white">后台管理系统</span>
+                    <span class="red">鼎鼎钨钼后台管理系统</span>
+                    <!-- <span class="white"></span> -->
                 </h1>
                 <h4 class="blue">&copy;鼎鼎钨钼</h4>
 
@@ -54,9 +54,18 @@
 </body>
 <script type="text/javascript">
 
+/**1、键盘按键**/
+$(window).keydown(function(event){
+	switch(event.keyCode) {
+		case 13:
+			$("#loginForm").submit();
+			break;
+	}
+});
+
 $(function(){
 	//设置页面载入的时候，如果cookie存在就填充两个input
-	if ($.cookie('loginName')!=null) {
+	if ($.cookie('loginName')!="null") {
 		$("#loginName").val($.cookie('loginName'));
 		$("#password").val($.cookie('password'));
 		$("#rememberMe").prop("checked",true);
@@ -90,10 +99,10 @@ $("#loginForm").validate({
 			$.cookie('loginName', $("#loginName").val(),{expires:1}); //设置cookie的值
 			$.cookie('password', $("#password").val(),{expires:1}); //设置cookie的值
 		}else{
-			if ($.cookie('loginName')!=null&&$.cookie('loginName')!='') {
+			if ($.cookie('loginName')!="null"&&$.cookie('loginName')!='') {
 				$.cookie('loginName',null);
 			}
-			if ($.cookie('password')!=null&&$.cookie('password')!='') {
+			if ($.cookie('password')!="null"&&$.cookie('password')!='') {
 				$.cookie('password',null);
 			}
 		}

@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dingding.background.base.BaseController;
 import com.dingding.background.domin.User;
 import com.dingding.background.service.UserService;
+import com.dingding.utils.page.PageHelper;
+import com.dingding.utils.page.PageInfo;
 
 /**
  * User的Controller层接口
@@ -41,12 +43,25 @@ public class UserController extends BaseController{
 	 * @return:ModelAndView
 	 */
 	@RequestMapping(value="/list")
-	public ModelAndView list(User user){
-		mav=new ModelAndView("background/user/userlist");
+	public ModelAndView list(HttpServletRequest req,User user){
+		mav=new ModelAndView("background/user/userlist2");
 		try {
+			String str_pageNum = req.getParameter("pageNum")==null?"1":req.getParameter("pageNum");
+			String str_pageSize = req.getParameter("pageSize")==null?"10":req.getParameter("pageSize");
+			
+			int pageNum = 0,pageSize = 0;
+			
+			pageNum = Integer.parseInt(str_pageNum);
+			pageSize = Integer.parseInt(str_pageSize);
+			// 分页:页码，每页显示数量
+			PageHelper.startPage(pageNum, pageSize);
+			
 			List<User> userList=userService.list(user);
+			
+			PageInfo<User> page = new PageInfo(userList);
 			mav.addObject("userList", userList);
 			mav.addObject("user", user);//条件查询
+			mav.addObject("page", page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -179,7 +194,7 @@ public class UserController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "background/user/login";
+		return "redirect:/user/loginUI";
 	}
 	
 	/**6.1
@@ -200,15 +215,7 @@ public class UserController extends BaseController{
 	public String sider(HttpServletRequest request){
 		return "background/mainframe/sider";
 	}
-	/**6.1
-	 * Describe:跳转到框架子页top
-	 * Parameters:
-	 * @return:String
-	 */
-	@RequestMapping(value="/main")
-	public String main(HttpServletRequest request){
-		return "background/mainframe/main";
-	}
+	
 	
 	/**10 唯一性验证**/
 	@RequestMapping("/checkUnique")
