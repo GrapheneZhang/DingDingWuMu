@@ -18,7 +18,7 @@ public class DaoTest {
 			}
 			public static void main(String ag[]){
 					
-					System.out.println("进入主程序开始执行。。。。。。。。。。。。");
+					System.out.println("进入主程序开始执行.。。。。。。。。。。。。");
 					User user=new User();
 					user.setIdCard("222222222222222222");
 					user.setLoginName("zhang");

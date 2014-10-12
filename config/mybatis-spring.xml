@@ -48,7 +48,7 @@
 		<!-- 3.1、指定SessionFactory的数据源 -->
 		<property name="dataSource" ref="c3p0DataSource"/>
 		<!-- 3.2、指定mybatis的 XML 配置文件路径 -->  
-		<property name="configLocation" value="/WEB-INF/classes/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 	</bean>
   
 	<!--4、配置sqlsersion生产实例MapperScannerConfigurer配置-->
