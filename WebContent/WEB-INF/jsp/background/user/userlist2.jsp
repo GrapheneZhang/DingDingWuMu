@@ -5,6 +5,14 @@
 <head>
     <title>用户列表</title>
 	<%@ include file="/commons/jsp/commons.jspf" %>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/script/commons/paging.js"></script><!-- 分页 -->
+	<style type="text/css">
+		html{ height:100%} /*兼容firefox的div高度100%*/  
+		#left{
+			float:left;
+			width:200px;
+		}
+	</style>
 </head>
 <body>
 <div class="main-container" id="main-container">
@@ -76,28 +84,31 @@
                 </div>
                 <!-- /span -->
             </div>
-            <div class="text-center" style="width:100%">
+            <!-- 分页模块 -->
+            <div style="width:100%;text-align:center;">
             	<form id="page_form" action="${pageContext.request.contextPath}/user/list" method="post">
-                <ul class="pagination">
-                	<li class="text-left">
-                		每页显示记录
-	                	<select id="pageSize" name="pageSize" >
-	                		<option value="10">10</option>
-	                		<option value="5">5</option>
-	                	</select>条 
-                	</li>
-                	<c:if test="${hasPreviousPage==true}">
-                		<li><a href="#">上一页&laquo;</a></li>
-                	</c:if>
-                    <c:forEach items="${page.navigatepageNums}" var="item">
-                    	<li class="navigate"><input type="button" value="${item}"></li>
-                    </c:forEach>
-                    <c:if test="${hasNextPage==true}">
-                		<li><a href="#">下一页&raquo;</a></li>
-                	</c:if>
-                    <li>当前第${page.pageNum}页，共${page.pages}页 </li>
-                    <li>到第<input type="text" id="pageNum" name="pageNum" value="${page.pageNum}" style="width:30px"/>页 <input type="submit" class="btn btn-xs btn-info" value="确定"/></li>
-                </ul>
+            	<div id="left">
+	            	<ul class="pagination">
+	            		<li>
+	                		每页显示记录
+		                	<select id="pageSize" name="pageSize" >
+		                		<option value="10">10</option>
+		                		<option value="5">5</option>
+		                	</select>条 
+                		</li>
+	            	</ul>
+            	</div>
+            	<div id="center">
+	                <ul class="pagination">
+	                	<li id="previous"><a>${page.hasPreviousPage==true?'上一页&laquo;':'已是第一页'}</a></li>
+	                    <c:forEach items="${page.navigatepageNums}" var="item">
+	                    	<li class="navigate"><a>${item}</a></li>
+	                    </c:forEach>
+	                    <li id="next"><a>${page.hasNextPage==true?'下一页&raquo;':'已是尾页'}</a></li>
+	                    <li>当前第${page.pageNum}页，共${page.pages}页 </li>
+	                    <li>到第<input type="text" id="pageNum" name="pageNum" value="${page.pageNum}" style="width:30px"/>页 <input type="submit" class="btn btn-xs btn-info" value="确定"/></li>
+	                </ul>
+                </div>
                 </form>
             </div>
             <!-- /row -->
@@ -111,17 +122,19 @@
  * Main:准备方法
  */
 $(function(){
+	//分页方法对象
+	new Page("${page.pageNum}","${page.pageSize}").paging();
 	
 	//每页显示记录数
-	$("#pageSize").val("${page.pageSize}");//载入时回显
+	/* $("#pageSize").val("${page.pageSize}");//载入时回显
 	$("#pageSize").change(function(){//改变时重新加载列表
 		$("#page_form").submit();
 	});
 	// 点击导航页码的时候提交
 	$(".navigate").click(function(){
-		$("#pageNum").val($(this).find("input").val());
+		$("#pageNum").val($(this).find("a").text());
 		$("#page_form").submit();
-	});
+	}); */
 	
 	//1 全选、全不选
 	$("#allId").click(function(){

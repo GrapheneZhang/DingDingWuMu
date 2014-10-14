@@ -58,7 +58,7 @@ public class UserController extends BaseController{
 			
 			List<User> userList=userService.list(user);
 			
-			PageInfo<User> page = new PageInfo(userList);
+			PageInfo<User> page = new PageInfo<User>(userList);
 			mav.addObject("userList", userList);
 			mav.addObject("user", user);//条件查询
 			mav.addObject("page", page);
