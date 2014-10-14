@@ -10,7 +10,7 @@ function Page(pageNum,pageSize){
 	//主分页方法
 	this.paging=function(){
 		//每页显示记录数
-		$("#pageSize").val(pageSize);//载入时回显
+		$("#pageSize").val(parseInt(pageSize));//载入时回显
 		
 		//每页显示记录数改变时
 		$("#pageSize").change(function(){//改变时重新加载列表
@@ -19,23 +19,23 @@ function Page(pageNum,pageSize){
 		
 		// 点击导航页码的时候提交
 		$(".navigate").click(function(){
-			$("#pageNum").val($(this).find("a").text());
+			$("#pageNum").val(parseInt($(this).find("a").text()));
 			$("#page_form").submit();
 		});
 		
 		//上一页、下一页
 		$("#previous").click(function(){
-			if($(this).children("a").text()=="已是第一页"){
+			if($(this).children("a").text()=="无上一页"){
 				return false;
 			}
-			$("#pageNum").val(pageNum-1);
+			$("#pageNum").val(parseInt(pageNum)-1);
 			$("#page_form").submit();
 		});
 		$("#next").click(function(){
-			if($(this).children("a").text()=="已是尾页"){
+			if($(this).children("a").text()=="无下一页"){
 				return false;
 			}
-			$("#pageNum").val(pageNum+1);
+			$("#pageNum").val(parseInt(pageNum)+1);
 			$("#page_form").submit();
 		});
 	}

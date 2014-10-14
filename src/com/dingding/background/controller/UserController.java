@@ -80,7 +80,7 @@ public class UserController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		return "background/user/useradd";
+		return "background/user/useradd2";
 	}
 	/**2.2
 	 * Describe:新增

@@ -23,7 +23,7 @@ public interface UserDao {
 	//登录相关
 	public User getByLoginNameAndPassword(User user);//6.1登录
 	
-	public int countByLoginName(String loginName);//10.1 loginName唯一性验证
-	public int countByIdCard(String idCard);//10.2 idCard唯一性验证
+	public Integer countByLoginName(String loginName);//10.1 loginName唯一性验证
+	public Integer countByIdCard(String idCard);//10.2 idCard唯一性验证
 	
 }
