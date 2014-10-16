@@ -47,7 +47,7 @@
 </insert>
 
 <!-- 4 删除 -->
-<delete id="delete" parameterType="int">
+<delete id="delete" parameterType="Integer">
 	delete from wm_user where id=#{id}
 </delete>
 
@@ -67,12 +67,12 @@
 </select>
 
 <!-- 10.1 loginName唯一性验证 -->
-<select id="countByLoginName" parameterType="String" resultType="int">
-	select * from wm_user where LOGINNAME=#{loginName}
+<select id="countByLoginName" parameterType="String" resultType="Integer">
+	select count(*) from wm_user where LOGINNAME=#{loginName}
 </select>
 <!-- 10.2 idCard唯一性验证 -->
-<select id="countByIdCard" parameterType="String" resultType="int">
-	select * from wm_user where IDCARD=#{idCard}
+<select id="countByIdCard" parameterType="String" resultType="Integer">
+	select count(*) from wm_user where IDCARD=#{idCard}
 </select>
 
 </mapper>

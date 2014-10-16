@@ -31,7 +31,7 @@
         <h1>
            	 用户管理
             <small>
-                <a id="addUI" class="btn btn-primary" data-toggle="modal" href="${pageContext.request.contextPath}/user/addUI">新建用户</a>
+                <a id="addUI" class="btn btn-primary" href="${pageContext.request.contextPath}/user/addUI">新建用户</a>
             </small>
         </h1>
     </div>
@@ -45,13 +45,13 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                            	<th><input type="checkbox" name="allId" id="allId"/></th>
-                                <th>序号</th>
-                                <th>登录名</th>
-                                <th>真实姓名</th>
-                                <th>用户权限</th>
-                                <th>身份证号</th>
-                                <th>操作</th>
+                            	<th style="width:8%"><input type="checkbox" name="allId" id="allId"/></th>
+                                <th style="width:8%">序号</th>
+                                <th style="width:18%">登录名</th>
+                                <th style="width:18%">真实姓名</th>
+                                <th style="width:18%">用户权限</th>
+                                <th style="width:20%">身份证号</th>
+                                <th style="width:10%">操作</th>
                             </tr>
                             </thead>
 
@@ -100,11 +100,11 @@
             	</div>
             	<div id="center">
 	                <ul class="pagination">
-	                	<li id="previous"><a>${page.hasPreviousPage==true?'上一页&laquo;':'已是第一页'}</a></li>
+	                	<li id="previous"><a>${page.hasPreviousPage==true?'上一页&laquo;':'无上一页'}</a></li>
 	                    <c:forEach items="${page.navigatepageNums}" var="item">
 	                    	<li class="navigate"><a>${item}</a></li>
 	                    </c:forEach>
-	                    <li id="next"><a>${page.hasNextPage==true?'下一页&raquo;':'已是尾页'}</a></li>
+	                    <li id="next"><a>${page.hasNextPage==true?'下一页&raquo;':'无下一页'}</a></li>
 	                    <li>当前第${page.pageNum}页，共${page.pages}页 </li>
 	                    <li>到第<input type="text" id="pageNum" name="pageNum" value="${page.pageNum}" style="width:30px"/>页 <input type="submit" class="btn btn-xs btn-info" value="确定"/></li>
 	                </ul>
@@ -124,17 +124,6 @@
 $(function(){
 	//分页方法对象
 	new Page("${page.pageNum}","${page.pageSize}").paging();
-	
-	//每页显示记录数
-	/* $("#pageSize").val("${page.pageSize}");//载入时回显
-	$("#pageSize").change(function(){//改变时重新加载列表
-		$("#page_form").submit();
-	});
-	// 点击导航页码的时候提交
-	$(".navigate").click(function(){
-		$("#pageNum").val($(this).find("a").text());
-		$("#page_form").submit();
-	}); */
 	
 	//1 全选、全不选
 	$("#allId").click(function(){
