@@ -1,0 +1,7 @@
+<td rowspan="2">发布时间:</td>
+<td>
+	开始：<input id="publicMsgTimeStart" name="publicMsgTimeStart" value="${publicMsgTimeStart}" class="Wdate" type="text" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss',maxDate:'#F{$dp.$D(\'publicMsgTimeEnd\')||\'2020\10\01 00:00:00\'}'})"/>
+</td>
+<td>
+	结束：<input id="publicMsgTimeEnd" name="publicMsgTimeEnd" value="${publicMsgTimeEnd}" class="Wdate" type="text" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss',minDate:'#F{$dp.$D(\'publicMsgTimeStart\')}',maxDate:'2020\10\01 00:00:00'})"/>
+</td>
