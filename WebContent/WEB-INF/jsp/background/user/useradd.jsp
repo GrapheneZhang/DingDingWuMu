@@ -6,17 +6,6 @@
     <title>增加用户</title>
 	<%@ include file="/commons/jsp/commons.jspf" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/commons/DateFormat.js"></script>
-	<style type="text/css">
-		#total{
-			text-align:center;
-		}
-		.modal-footer{
-			text-align:center;
-		}
-		.inputTd{
-			text-align:left;
-		}
-	</style>
 </head>
 <body>
 <!-- Modal newproduct -->

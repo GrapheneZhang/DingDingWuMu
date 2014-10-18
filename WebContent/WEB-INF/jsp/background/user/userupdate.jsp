@@ -7,11 +7,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/DateFormat.js"></script><!-- 日期格式化 -->
 	<title>修改用户</title>
-	<style type="text/css">
-		table{
-			border:1px solid blue;
-		}
-	</style>
 </head>
 <body>
 <!-- Modal newproduct -->

@@ -40,8 +40,10 @@ public class News {
 	 */
 	private Date createTime;
 	
-	
-	
+	//7搜索时的条件字段
+	private String createTimeStart;
+	//8
+	private String createTimeEnd;
 	
 	
 
@@ -91,6 +93,22 @@ public class News {
 
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
+	}
+
+	public String getCreateTimeStart() {
+		return createTimeStart;
+	}
+
+	public void setCreateTimeStart(String createTimeStart) {
+		this.createTimeStart = createTimeStart;
+	}
+
+	public String getCreateTimeEnd() {
+		return createTimeEnd;
+	}
+
+	public void setCreateTimeEnd(String createTimeEnd) {
+		this.createTimeEnd = createTimeEnd;
 	}
 			
 			

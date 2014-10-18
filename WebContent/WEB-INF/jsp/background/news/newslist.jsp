@@ -6,6 +6,7 @@
     <title>用户列表</title>
 	<%@ include file="/commons/jsp/commons.jspf" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/commons/paging.js"></script><!-- 分页 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/script/My97DatePicker/WdatePicker.js"></script><!-- 分页 -->
 	<style type="text/css">
 		html{
 			height:100%
@@ -26,10 +27,16 @@
     </ul>
     <!-- .breadcrumb -->
 	<div class="nav-search">
-	    <form class="form-search" id="form-search">
+	    <form class="form-search" id="form_search" method="post" action="${pageContext.request.contextPath}/news/list">
 	    	<i class="glyphicon glyphicon-search nav-search-glyphicon"></i>
 	        <span class="input-glyphicon">
-	            <input type="text" placeholder="Search ..."  />
+	                         标题：<input type="text" placeholder="请输入..." id="title" name="title" value="${news.title}" />&nbsp;
+           	   内容：<input type="text" placeholder="请输入..." id="content" name="content" value="${news.content}" />&nbsp;
+                            发布用户：<input type="text" placeholder="请输入..." id="authorName" name="authorName" value="${news.authorName}" />&nbsp;
+                            发布时间：<input type="text" placeholder="点击选择" id="createTimeStart" name="createTimeStart" value="${news.createTimeStart}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd',maxDate:'#F{$dp.$D(\'createTimeEnd\')||\'2020\10\01 00:00:00\'}'})" />--
+                 <input type="text" placeholder="点击选择" id="createTimeEnd" name="createTimeEnd" value="${news.createTimeEnd}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd',minDate:'#F{$dp.$D(\'createTimeStart\')}',maxDate:'2020\10\01 00:00:00'})" />&nbsp;
+                 <input type="submit" id="search" value="搜索"/>&nbsp;
+                 <input type="reset" id="reset" value="重置"/>&nbsp;
 	        </span>
 	    </form>
 	</div>
@@ -96,7 +103,7 @@
             </div>
             <!-- 分页模块 -->
             <div style="width:100%;text-align:center;">
-            	<form id="page_form" action="${pageContext.request.contextPath}/user/list" method="post">
+            	<form id="page_form" action="${pageContext.request.contextPath}/news/list" method="post">
             	<div id="left">
 	            	<ul class="pagination">
 	            		<li>
@@ -156,6 +163,13 @@ $(function(){
 			location.href="${pageContext.request.contextPath}/news/delete?id="+newsId;
 		}
 	});
+	
+	/* //4搜索
+	$("#search").click(function(){
+		$("#form-search").attr("action","${pageContext.request.contextPath}/news/list?"+$("#page_form").serialize());
+		$("#form-search").submit();
+	}); */
+	
 });
 </script>
 </html>

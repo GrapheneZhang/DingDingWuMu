@@ -18,8 +18,9 @@ $(function(){
     	$(this).addClass("active");
     });
     //2 点击二级菜单的时候
-    $(".submenu li a").click(function(){
-    	$(this).parent().parent().css("display","block");
+    $(".submenu li a").click(function(event){
+    	//event.preventDefault();
+    	//$(this).parent().parent().css("display","block");
     	
     	//1 将本二级机构的display在none和block之间切换
     	//alert($(this).parent().parent());//("display","block");

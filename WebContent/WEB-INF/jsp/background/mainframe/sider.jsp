@@ -46,7 +46,7 @@
                     </ul>
                 </li>
                 <li class="li1">
-                    <a href="newmessagelist.html" class="dropdown-toggle" target="mainFrame">
+                    <a href="${pageContext.request.contextPath}/news/list" class="dropdown-toggle" target="mainFrame">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         <span class="menu-text"> 新闻管理 </span>
                     </a>
