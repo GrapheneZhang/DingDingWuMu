@@ -18,25 +18,73 @@ import com.dingding.background.service.NewsService;
 @Service
 public class NewsServiceImpl extends BaseServiceImpl implements NewsService{
 
-	
+	/**1
+	 * Describe:条件查询
+	 * Parameters:
+	 * @return:ModelAndView
+	 */
 	public List<News> list(News news) {
-		return null;
+		return newsDao.list(news);
 	}
 
+	/**2.1
+	 * Describe:getById
+	 * Parameters:
+	 * @return:User
+	 */
 	public News getById(int id) {
-		return null;
+		return newsDao.getById(id);
 	}
 
-	public Integer add(News news) {
-		return null;
+	/**3
+	 * Describe:新增
+	 * Parameters:
+	 * @return:Integer
+	 */
+	public boolean add(News news) {
+		boolean result=false;
+		try {
+			Integer rows=newsDao.add(news);
+			if(rows>0)
+				result=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
-	public Integer delete(int id) {
-		return null;
+	/**4
+	 * Describe:删除
+	 * Parameters:
+	 * @return:
+	 */
+	public boolean delete(int id) {
+		boolean result=false;
+		try {
+			Integer rows=newsDao.delete(id);
+			if(rows>0)
+				result=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
-	public Integer update(News news) {
-		return null;
+	/**5
+	 * Describe:修改
+	 * Parameters:
+	 * @return:ModelAndView
+	 */
+	public boolean update(News news) {
+		boolean result=false;
+		try {
+			Integer rows=newsDao.update(news);
+			if(rows>0)
+				result=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public List<News> selectAllTitle() {
@@ -46,5 +94,4 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService{
 	public List<News> selectDateTitle(Map<String, Date> map) {
 		return null;
 	}
-
 }

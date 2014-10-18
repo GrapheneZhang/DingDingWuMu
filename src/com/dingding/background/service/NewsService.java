@@ -16,9 +16,9 @@ public interface NewsService {
 	
 	public News getById(int id);//2 获取：通过Id
 	
-	public Integer add(News news);//3 添加
-	public Integer delete(int id);//4 删除
-	public Integer update(News news);//5 修改管理员属性，当然是不能修改权限的
+	public boolean add(News news);//3 添加
+	public boolean delete(int id);//4 删除
+	public boolean update(News news);//5 修改标题和内容
 	
 	public List<News> selectAllTitle();//查询所有新闻标题
 	public List<News> selectDateTitle(Map<String, Date> map);//查询根据发布日期查询新闻标题

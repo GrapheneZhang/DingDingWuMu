@@ -44,7 +44,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(HttpServletRequest req,User user){
-		mav=new ModelAndView("background/user/userlist2");
+		mav=new ModelAndView("background/user/userlist");
 		try {
 			String str_pageNum = req.getParameter("pageNum")==null?"1":req.getParameter("pageNum");
 			String str_pageSize = req.getParameter("pageSize")==null?"10":req.getParameter("pageSize");
@@ -80,7 +80,7 @@ public class UserController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		return "background/user/useradd2";
+		return "background/user/useradd";
 	}
 	/**2.2
 	 * Describe:新增
@@ -119,7 +119,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value="/updateUI")
 	public ModelAndView updateUI(int id){
-		mav=new ModelAndView("background/user/userupdate2");
+		mav=new ModelAndView("background/user/userupdate");
 		try {
 			User user=userService.getById(id);
 			mav.addObject("user", user);
