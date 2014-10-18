@@ -119,7 +119,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value="/updateUI")
 	public ModelAndView updateUI(int id){
-		mav=new ModelAndView("background/user/userupdate");
+		mav=new ModelAndView("background/user/userupdate2");
 		try {
 			User user=userService.getById(id);
 			mav.addObject("user", user);

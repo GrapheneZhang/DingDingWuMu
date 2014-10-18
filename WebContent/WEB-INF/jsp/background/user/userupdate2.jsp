@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/commons/jsp/commons.jspf" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>增加用户</title>
-	<%@ include file="/commons/jsp/commons.jspf" %>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/script/commons/DateFormat.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/script/DateFormat.js"></script><!-- 日期格式化 -->
+	<title>修改用户</title>
 	<style type="text/css">
-		#total{
-			text-align:center;
-		}
-		.modal-footer{
-			text-align:center;
-		}
-		.inputTd{
-			text-align:left;
+		table{
+			border:1px solid blue;
 		}
 	</style>
 </head>
@@ -28,46 +23,53 @@
                     <span  aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">新建用户</h4>
+                <h4 class="modal-title" id="myModalLabel">修改用户</h4>
             </div>
             <div class="modal-body clearfix">
                 <div class="row">
                     <div class="col-sm-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        <form class="form-horizontal" role="form" id="form_add" method="post">
+                        <form class="form-horizontal" role="form" id="form_update" method="post">
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">登录名</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="请输入您的登录名" name="loginName" id="loginName"/>
+                                	<input type="hidden" name="id" id="id" value="${user.id}"/>
+                                    <input type="text" class="form-control" placeholder="请输入您的登录名" name="loginName" id="loginName" value="${user.loginName}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-2 control-label">密码</label>
+                                <label  class="col-sm-2 control-label">原密码</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" placeholder="请输入您的密码" name="password" id="password" size="30" maxlength="20"/>
+                                    <input type="password" class="form-control" placeholder="原始密码" name="oldPassword" id="oldPassword" value="${user.password}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-sm-2 control-label">确认密码</label>
+                                <label  class="col-sm-2 control-label">新密码</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" placeholder="再次输入密码" name="password2" id="password2" size="30" maxlength="20"/>
+                                    <input type="password" class="form-control" placeholder="新密码" name="password" id="password"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">新密码确认</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" placeholder="新密码确认" name="password2" id="password2"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">真实姓名</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="userName" placeholder="请输入您的真实姓名" id="userName" size="30" maxlength="20"/>
+                                    <input type="text" class="form-control" name="userName" placeholder="请输入您的真实姓名" id="userName" value="${user.userName}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">身份证</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="idCard" placeholder="请输入您的身份证号码" id="idCard" size="30" maxlength="20"/>
+                                    <input type="text" class="form-control" name="idCard" placeholder="请输入您的身份证号码" id="idCard" value="${user.idCard}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <input type="submit" class="btn btn-success" value="保存"/>
+                                    <input type="submit" class="btn btn-success" value="确定"/>
                                     <input type="button" class="btn btn-default" id="showBack" value="取消" />
                                 </div>
                             </div>
@@ -99,19 +101,26 @@ $(function(){
 /**
 * 验证 提交
 */
-$("#form_add").validate({
+$("#form_update").validate({
 	rules:{
 		loginName:{
 			required:true,
 			num620Char:true,
 			remote:{
 				url:"${pageContext.request.contextPath}/user/checkUnique",
-				type:"post"
+				type:"post",
+				data:{updateId:$("#id").val()}
 			}
+		},
+		oldPassword:{
+			required:true,
+			num620Char:true
 		},
 		password:{
 			required:true,
-			num620Char:true
+			notEqual:true,
+			num620Char:true,
+			equalRePassword:true
 		},
 		password2:{
 			required:true,
@@ -119,19 +128,23 @@ $("#form_add").validate({
 		},
 		userName:{
 			required:true,
-			trueName:true
+			char20:true
 		},
 		idCard:{
 			required:true,
 			//idCardRule:true,
 			remote:{
 				url:"${pageContext.request.contextPath}/user/checkUnique",
-				type:"post"
+				type:"post",
+				data:{updateId:$("#id").val()}
 			}
 		}
 	},messages: {
 		loginName:{
 			remote:"此登录名已经被使用"
+		},
+		password:{
+			equalTo:"两次密码输入不一致！"
 		},
 		password2:{
 			equalTo:"两次密码输入不一致！"
@@ -140,8 +153,19 @@ $("#form_add").validate({
 			remote:"此身份证已经被使用"
 		}
 	},submitHandler:function(form){
-	     $(form).attr("action","${pageContext.request.contextPath}/user/add");
-		 form.submit();
+		$.post(
+			 "${pageContext.request.contextPath}/user/update",
+			 $(form).serialize(),
+			 function(data){
+				if (data=='true') {
+					alert("修改成功！");
+					location.href="${pageContext.request.contextPath}/user/list";
+				} else {
+					alert("密码错误，修改失败！");
+				}
+				
+			 }
+		 );
 	}
 });
 
@@ -152,21 +176,34 @@ $.validator.addMethod("char20", function(value, element) {
 		 return false;
 	 }
 	 return true;
-}, "最多只能输入20个字符(中文占2个)。");
+}, "最多只能输入20个字符(中文计为2个字符),请重新确认!");
 
 //2 8-20位 数字字母
 $.validator.addMethod("num620Char", function(value, element) {
 var regRule = /^([A-Z]|[a-z]|[0-9]){6,20}$/;
-return this.optional(element)||regRule.test(value);
-}, "只能为6-20位的数字或字母。");
+return regRule.test(value);
+}, "只能为6-20位的数字字母,请重新确认!");
 
-//3 身份证号码验证逻辑
+//3、新密码不能与现用密码一样
+$.validator.addMethod("notEqual", function(value, element) {
+	return value!=$("#oldPassword").val();
+}, "新密码不能与现用密码一样,请重新确认!");
+
+//4、密码要和确认密码一致
+$.validator.addMethod("equalRePassword", function(value, element) {
+	if($("#password2").val()!=""){
+		return value==$("#password2").val();
+	}
+	return true;
+}, "密码和确认密码不一致,请重新确认!");
+
+//5 身份证号码验证逻辑
 $.validator.addMethod("idCardRule", function(value, element) {
-	var rule=/^[0-9]{15}||[0-9]{18}||([0-9]{17}(X|x){1})$/;
+	var rule=/(^\d{15}$)|(^\d{18}$)|(^\d{17}(X|x)$)/;
 	var todayDate18=new Date().format("yyyyMMdd");//18位日期
 	var todayDate15=new Date().format("yyMMdd");//15位日期
 	if (rule.test(value)) {//1.1 位数正确
-		if (value.length==15) {//1.2 身份证上的日期必须小于现在的日期
+		if (value.lenth==15) {//1.2 身份证上的日期必须小于现在的日期
 			if (value.substring(6,12)<todayDate15) {
 				return true;
 			}
@@ -177,18 +214,6 @@ $.validator.addMethod("idCardRule", function(value, element) {
 		}
 	}
 	return false;
-}, "身份证号码非法,请重新确认。");
-
-//4、人名
-$.validator.addMethod("trueName", function(value, element) {
-	//以汉字和字母开头,后面可以有汉字、字母、点,长度20位
-	var rule=/^([\u4E00-\u9fa5]|[A-Z]|[a-z]){1}(·|[\u4E00-\u9fa5]|[A-Z]|[a-z]){0,19}$/;
-	if (rule.test(value)){
-		if(value.replace(/[^\x00-\xff]/g,"**").length<=20){
-			return true;
-		}
-	}
-	return false;
-}, "只能输入中/英文/间隔号且长度不大于20(中文占2)。");
+}, "身份证号码非法,请重新确认!");
 </script>
 </html>

@@ -29,7 +29,7 @@
                         <!--<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo"/>-->
 								<span class="user-info">
 									<small>用户名:</small>
-									${user.loginName}
+									${user.loginName}（${user.userName}）
 								</span>
                                 <!-- <span class="caret"></span> -->
                     </a>

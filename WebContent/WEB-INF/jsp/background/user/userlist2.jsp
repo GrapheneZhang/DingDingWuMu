@@ -141,7 +141,10 @@ $(function(){
 	});
 	//3 删除
 	$("button[name=delete]").click(function(){
-		
+		var userId=$(this).parent().parent().parent().find("#id").val();
+		if (confirm("确认删除吗？")) {
+			location.href="${pageContext.request.contextPath}/user/delete?id="+userId;
+		}
 	});
 });
 </script>

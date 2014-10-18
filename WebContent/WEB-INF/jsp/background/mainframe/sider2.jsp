@@ -20,7 +20,7 @@
                         <span class="menu-text">系统管理</span>
                     </a>
                     <ul class="submenu">
-                        <li>
+                        <li class="icon-double-angle-right">
                             <a href="${pageContext.request.contextPath}/user/list" target="mainFrame">
                             <i class="icon-double-angle-right"></i>
                            	用户管理

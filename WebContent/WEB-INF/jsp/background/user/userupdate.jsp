@@ -94,7 +94,7 @@ $("#form_update").validate({
 		},
 		idCard:{
 			required:true,
-			idCardRule:true,
+			//idCardRule:true,
 			remote:{
 				url:"${pageContext.request.contextPath}/user/checkUnique",
 				type:"post",
