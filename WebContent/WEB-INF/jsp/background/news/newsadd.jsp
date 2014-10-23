@@ -6,7 +6,14 @@
     <title>发布新闻</title>
 	<%@ include file="/commons/jsp/commons.jspf" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/summernote/summernote.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/script/summernote/summernote-zh-CN.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/script/summernote/summernote.css"/>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+	<style type="text/css">
+		div[class='note-insert btn-group']{
+			display:none;
+		}
+	</style>
 </head>
 <body>
 <!-- Modal newproduct -->
@@ -68,7 +75,8 @@ $(function(){
 	
 	//富文本
 	$(".summernote").summernote({
-		height:400
+		height:400,
+		lang:'zh-CN'
 	});
 });
 
@@ -86,7 +94,9 @@ $("#form_add").validate({
 			char2000:true
 		}
 	},messages: {
+		
 	},submitHandler:function(form){
+		alert($("#content").html());
 		alert($(".note-editable").html());
 		return false;
 	    $(form).attr("action","${pageContext.request.contextPath}/news/add");

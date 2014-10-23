@@ -20,7 +20,7 @@ function Page(pageNum,pageSize){
 		
 		//每页显示记录数改变时
 		$("#pageSize").change(function(){//改变时重新加载列表
-			if($("#form_search")!=null){
+			if($("#form_search").length>0){
 				$("#form_search").attr("action",$("#form_search").attr("action")+"?"+$("#page_form").serialize());
 				$("#form_search").submit();
 			}else{
@@ -31,7 +31,7 @@ function Page(pageNum,pageSize){
 		// 点击导航页码的时候提交
 		$(".navigate").click(function(){
 			$("#pageNum").val(parseInt($(this).find("a").text()));
-			if($("#form_search")!=null){
+			if($("#form_search").length>0){
 				$("#form_search").attr("action",$("#form_search").attr("action")+"?"+$("#page_form").serialize());
 				$("#form_search").submit();
 			}else{
@@ -46,7 +46,7 @@ function Page(pageNum,pageSize){
 			}
 			$("#pageNum").val(parseInt(pageNum)-1);
 			
-			if($("#form_search")!=null){
+			if($("#form_search").length>0){
 				$("#form_search").attr("action",$("#form_search").attr("action")+"?"+$("#page_form").serialize());
 				$("#form_search").submit();
 			}else{
@@ -58,8 +58,7 @@ function Page(pageNum,pageSize){
 				return false;
 			}
 			$("#pageNum").val(parseInt(pageNum)+1);
-			
-			if($("#form_search")!=null){
+			if($("#form_search").length>0){
 				$("#form_search").attr("action",$("#form_search").attr("action")+"?"+$("#page_form").serialize());
 				$("#form_search").submit();
 			}else{
