@@ -5,10 +5,9 @@
 <head>
     <title>发布新闻</title>
 	<%@ include file="/commons/jsp/commons.jspf" %>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/script/summernote/summernote.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/script/summernote/summernote-zh-CN.js"></script>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/script/summernote/summernote.css"/>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/script/ueditor-1.4.3/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/script/ueditor-1.4.3/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/script/ueditor-1.4.3/lang/zh-cn/zh-cn.js"></script>
 	<style type="text/css">
 		div[class='note-insert btn-group']{
 			display:none;
@@ -41,7 +40,8 @@
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">新闻内容</label>
                                 <div class="col-sm-10">
-                                	<textarea class="summernote" id="content" name="content" ></textarea>
+                                	<!-- <textarea class="summernote" id="content" name="content" ></textarea> -->
+                                	<script id="editor" type="text/plain" style="width:700px;height:300px;"></script>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -74,10 +74,7 @@ $(function(){
 	});
 	
 	//富文本
-	$(".summernote").summernote({
-		height:400,
-		lang:'zh-CN'
-	});
+	var ue = UE.getEditor('editor');
 });
 
 /**
@@ -96,8 +93,7 @@ $("#form_add").validate({
 	},messages: {
 		
 	},submitHandler:function(form){
-		alert($("#content").html());
-		alert($(".note-editable").html());
+		
 		return false;
 	    $(form).attr("action","${pageContext.request.contextPath}/news/add");
 		form.submit();
