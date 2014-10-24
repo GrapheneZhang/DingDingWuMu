@@ -76,7 +76,7 @@ $(function(){
 
 //富文本
 var ue = UE.getEditor('editor',{
-	serverUrl:"",
+	//serverUrl:"${pageContext.request.contextPath}/upload/ueditorUpload",
 	toolbars:[[
 		'fullscreen', 'source', '|', 'undo', 'redo', '|',
         'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
@@ -102,8 +102,7 @@ $("#form_add").validate({
 			char50:true
 		},
 		content:{
-			required:true,
-			char2000:true
+			required:true
 		}
 	},messages: {
 		
