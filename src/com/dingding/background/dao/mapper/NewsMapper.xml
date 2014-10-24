@@ -20,16 +20,16 @@
 	left join wm_user b on a.authorId=b.id
 	<where>
 		<if test="title!=null and title!=''">
-			and a.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+			and a.title LIKE '%'||#{title}||'%'<!-- CONCAT(CONCAT('%', #{title}),'%') -->
 		</if>
 		<if test="content!=null and content!=''">
-			and a.content LIKE CONCAT(CONCAT('%', #{content}),'%')
+			and a.content LIKE '%'||#{content}||'%'
 		</if>
 		<if test="authorId!=null and authorId!=''">
-			and a.authorId LIKE CONCAT(CONCAT('%', #{authorId}),'%')
+			and a.authorId LIKE '%'||#{authorId}||'%'
 		</if>
 		<if test="authorName!=null and authorName!=''">
-			and b.loginName LIKE CONCAT(CONCAT('%', #{authorName}),'%')
+			and b.loginName LIKE '%'||#{authorName}||'%'
 		</if>
 		<if test="createTimeStart!=null and createTimeStart!=''">
 			<![CDATA[
@@ -42,7 +42,7 @@
 			]]>
 		</if>
 	</where>
-	order by ID
+	order by a.ID
 </select>
 
 <!-- 2 获取：通过Id -->

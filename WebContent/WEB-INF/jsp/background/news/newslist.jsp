@@ -165,11 +165,12 @@ $(function(){
 		}
 	});
 	
-	/* //4搜索
-	$("#search").click(function(){
-		$("#form-search").attr("action","${pageContext.request.contextPath}/news/list?"+$("#page_form").serialize());
-		$("#form-search").submit();
-	}); */
+	 //4 重置
+	$("#reset").click(function(){
+		$("#title").val("");
+		$("#content").val("");
+		$("#authorName").val("");
+	});
 	
 });
 </script>
