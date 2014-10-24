@@ -1,4 +1,4 @@
-package com.dingding.background.domin;
+package com.dingding.background.domain;
 
 import java.util.Date;
 

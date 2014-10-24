@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.dingding.background.base.BaseServiceImpl;
-import com.dingding.background.domin.OperateLog;
+import com.dingding.background.domain.OperateLog;
 import com.dingding.background.service.OperateLogService;
 
 @Service

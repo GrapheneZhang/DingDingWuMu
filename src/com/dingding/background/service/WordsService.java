@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.dingding.background.domin.Words;
+import com.dingding.background.domain.Words;
 
 public interface WordsService {
 

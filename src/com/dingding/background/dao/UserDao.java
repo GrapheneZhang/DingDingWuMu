@@ -2,7 +2,7 @@ package com.dingding.background.dao;
 
 import java.util.List;
 
-import com.dingding.background.domin.User;
+import com.dingding.background.domain.User;
 
 /**
  * User的dao层接口

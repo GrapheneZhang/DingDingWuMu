@@ -33,14 +33,14 @@
     
     <!-- 2、定义全局别名 -->
     <typeAliases>
-       <typeAlias alias="News" type="com.dingding.background.domin.News"/>
-       <typeAlias alias="OperateLog" type="com.dingding.background.domin.OperateLog"/>
-       <typeAlias alias="Picture" type="com.dingding.background.domin.Picture"/>
-       <typeAlias alias="Product" type="com.dingding.background.domin.Product"/>
-       <typeAlias alias="ProductType" type="com.dingding.background.domin.ProductType"/>
-       <typeAlias alias="Tech" type="com.dingding.background.domin.Tech"/>
-       <typeAlias alias="User" type="com.dingding.background.domin.User"/>
-       <typeAlias alias="Words" type="com.dingding.background.domin.Words"/> 
+       <typeAlias alias="News" type="com.dingding.background.domain.News"/>
+       <typeAlias alias="OperateLog" type="com.dingding.background.domain.OperateLog"/>
+       <typeAlias alias="Picture" type="com.dingding.background.domain.Picture"/>
+       <typeAlias alias="Product" type="com.dingding.background.domain.Product"/>
+       <typeAlias alias="ProductType" type="com.dingding.background.domain.ProductType"/>
+       <typeAlias alias="Tech" type="com.dingding.background.domain.Tech"/>
+       <typeAlias alias="User" type="com.dingding.background.domain.User"/>
+       <typeAlias alias="Words" type="com.dingding.background.domain.Words"/> 
     </typeAliases>
     
 	 <!--  3、分页插件

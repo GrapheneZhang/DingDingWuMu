@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dingding.background.base.BaseController;
-import com.dingding.background.domin.News;
+import com.dingding.background.domain.News;
 import com.dingding.background.service.NewsService;
 import com.dingding.utils.page.PageHelper;
 import com.dingding.utils.page.PageInfo;

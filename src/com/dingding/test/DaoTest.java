@@ -3,7 +3,7 @@ package com.dingding.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.dingding.background.domin.User;
+import com.dingding.background.domain.User;
 import com.dingding.background.service.UserService;
 
 public class DaoTest {

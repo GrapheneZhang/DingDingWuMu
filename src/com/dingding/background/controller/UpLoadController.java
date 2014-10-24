@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dingding.background.base.BaseController;
-import com.dingding.background.domin.User;
+import com.dingding.background.domain.User;
 
 
 /** 

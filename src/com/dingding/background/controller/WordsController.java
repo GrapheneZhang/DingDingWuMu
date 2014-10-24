@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dingding.background.base.BaseController;
-import com.dingding.background.domin.Words;
+import com.dingding.background.domain.Words;
 import com.dingding.background.service.WordsService;
 
 /**

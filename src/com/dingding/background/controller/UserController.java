@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dingding.background.base.BaseController;
-import com.dingding.background.domin.User;
+import com.dingding.background.domain.User;
 import com.dingding.background.service.UserService;
 import com.dingding.utils.page.PageHelper;
 import com.dingding.utils.page.PageInfo;

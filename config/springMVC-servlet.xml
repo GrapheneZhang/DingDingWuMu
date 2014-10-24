@@ -19,6 +19,7 @@
     <!-- 2 组件扫描 :包括了<context:annotation-config/>(DI注解解析器)中的内容(@Resource@Autowired,etc..)-->
 	<context:component-scan base-package="com.dingding.background.controller,com.dingding.background.dao,com.dingding.background.service.impl,com.dingding.test"/>
 	<context:component-scan base-package="com.dingding.proscenium.controller,com.dingding.proscenium.dao" />
+	<context:component-scan base-package="com.dingding.utils.upload.controller"/>
 		     
     <!-- 3 静态资源放行:在web.xml中用另一种方式实现了,此处先注释掉-->
     <mvc:resources mapping="/script/**" location="/script/" />

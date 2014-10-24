@@ -2,7 +2,7 @@ package com.dingding.background.service;
 
 import java.util.List;
 
-import com.dingding.background.domin.User;
+import com.dingding.background.domain.User;
 
 public interface UserService {
 

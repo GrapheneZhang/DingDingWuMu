@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dingding.background.base.BaseController;
-import com.dingding.background.domin.Product;
+import com.dingding.background.domain.Product;
 import com.dingding.background.service.ProductService;
 
 /**

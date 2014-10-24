@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dingding.background.base.BaseController;
-import com.dingding.background.domin.OperateLog;
+import com.dingding.background.domain.OperateLog;
 import com.dingding.background.service.OperateLogService;
 
 /**

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.dingding.background.domin.News;
+import com.dingding.background.domain.News;
 /**
  * News的service层接口
  * @author zcs

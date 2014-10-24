@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.dingding.background.base.BaseServiceImpl;
-import com.dingding.background.domin.News;
+import com.dingding.background.domain.News;
 import com.dingding.background.service.NewsService;
 
 /**
