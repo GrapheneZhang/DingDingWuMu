@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dingding.background.base.BaseController;
 import com.dingding.background.domain.User;
 import com.dingding.background.service.UserService;
+import com.dingding.utils.Constants;
 import com.dingding.utils.page.PageHelper;
 import com.dingding.utils.page.PageInfo;
 
@@ -168,7 +169,7 @@ public class UserController extends BaseController{
 			HttpSession session=request.getSession();
 			User user=userService.login(loginUser);
 			if (user!=null) {
-				session.setAttribute("user", user);//将登录的用户放入session
+				session.setAttribute(Constants.SESSION_KEY_CURRENT_USER, user);//将登录的用户放入session
 				result="background/mainframe/index";
 			}else{//账户密码错误的时候
 				if(session!=null)

@@ -1,5 +1,6 @@
 package com.dingding.background.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,10 +8,15 @@ import java.util.Date;
  * @describe 新闻表
  * 2014-09-17
  * */
-public class News {
+public class News implements Serializable{
 	//所有属性 6个
 	//主键id，新闻标题，新闻内容，管理员id，创建时间，管理员姓名
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 1 主键id
 	 */

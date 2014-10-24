@@ -8,8 +8,6 @@ package com.dingding.background.domain;
  * 2014-09-17
  * */
 public class User {
-
-		
 	
 		/** 所有属性 6个
 		 *  主键id，登录名，真实姓名，登录密码，用户权限，用户身份证号

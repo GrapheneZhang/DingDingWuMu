@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dingding.background.base.BaseController;
 import com.dingding.background.domain.News;
+import com.dingding.background.domain.User;
 import com.dingding.background.service.NewsService;
+import com.dingding.utils.Constants;
 import com.dingding.utils.page.PageHelper;
 import com.dingding.utils.page.PageInfo;
 
@@ -52,6 +54,7 @@ public class NewsController extends BaseController{
 			// 分页:页码，每页显示数量
 			PageHelper.startPage(pageNum, pageSize);
 			
+			//操作
 			List<News> newsList=newsService.list(news);
 			
 			PageInfo<News> page = new PageInfo<News>(newsList);
@@ -79,8 +82,11 @@ public class NewsController extends BaseController{
 	 * @return:String
 	 */
 	@RequestMapping(value="/add")
-	public String add(News news){
+	public String add(News news,
+			HttpServletRequest request){
 		try {
+			User user=(User)request.getSession().getAttribute(Constants.SESSION_KEY_CURRENT_USER);
+			news.setAuthorId(user.getId());
 			newsService.add(news);
 		} catch (Exception e) {
 			e.printStackTrace();

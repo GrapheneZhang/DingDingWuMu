@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户列表</title>
+    <title>新闻列表</title>
 	<%@ include file="/commons/jsp/commons.jspf" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/commons/paging.js"></script><!-- 分页 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/My97DatePicker/WdatePicker.js"></script><!-- 分页 -->
@@ -33,8 +34,8 @@
 	                         标题：<input type="text" placeholder="请输入..." id="title" name="title" value="${news.title}" />&nbsp;
            	   内容：<input type="text" placeholder="请输入..." id="content" name="content" value="${news.content}" />&nbsp;
                             发布用户：<input type="text" placeholder="请输入..." id="authorName" name="authorName" value="${news.authorName}" />&nbsp;
-                            发布时间：<input type="text" placeholder="点击选择" id="createTimeStart" name="createTimeStart" value="${news.createTimeStart}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd',maxDate:'#F{$dp.$D(\'createTimeEnd\')||\'2020\10\01 00:00:00\'}'})" />--
-                 <input type="text" placeholder="点击选择" id="createTimeEnd" name="createTimeEnd" value="${news.createTimeEnd}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd',minDate:'#F{$dp.$D(\'createTimeStart\')}',maxDate:'2020\10\01 00:00:00'})" />&nbsp;
+                            发布日期：<input type="text" placeholder="点击选择" id="createTimeStart" name="createTimeStart" value="${news.createTimeStart}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'createTimeEnd\')||\'2020\10\01 00:00:00\'}'})" />--
+                 <input type="text" placeholder="点击选择" id="createTimeEnd" name="createTimeEnd" value="${news.createTimeEnd}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'createTimeStart\')}',maxDate:'2020\10\01 00:00:00'})" />&nbsp;
                  <input type="submit" id="search" value="搜索"/>&nbsp;
                  <input type="reset" id="reset" value="重置"/>&nbsp;
 	        </span>
@@ -67,7 +68,7 @@
                                 <th style="width:20%">新闻标题</th>
                                 <th style="width:30%">新闻内容</th>
                                 <th style="width:15%">发布用户</th>
-                                <th style="width:15%">创建时间</th>
+                                <th style="width:15%">创建日期</th>
                                 <th style="width:10%">操作</th>
                             </tr>
                             </thead>
@@ -79,8 +80,8 @@
 								<td>${state.count}</td>
 								<td>${news.title}</td>
 								<td>${news.content}</td>
-								<td>${news.authorId}</td>
-								<td>${news.createTime}</td>
+								<td>${news.authorName}</td>
+								<td><fmt:formatDate value="${news.createTime}" type="date"/></td>
 								<td>
                                     <div class="btn-group">
                                         <button name="updateUI" class="btn btn-xs btn-success">

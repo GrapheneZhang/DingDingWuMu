@@ -50,9 +50,10 @@ protypename varchar(100) NOT NULL
 CREATE TABLE wm_news(
 id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 title varchar(50),
-content varchar(2000) NOT NULL,
+--content varchar(2000) NOT NULL,虽然u8占1个varchar就可表示汉字，但不知道将来用的数据库是否是u8编码
+content varchar(20000) NOT NULL,
 authorid int NOT NULL,
-createtime Date ,
+createtime Date,
 foreign key (authorid) references wm_user(id)
 );
 

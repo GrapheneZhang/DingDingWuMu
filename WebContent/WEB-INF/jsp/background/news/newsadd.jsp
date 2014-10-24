@@ -40,8 +40,8 @@
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">新闻内容</label>
                                 <div class="col-sm-10">
-                                	<!-- <textarea class="summernote" id="content" name="content" ></textarea> -->
-                                	<script id="editor" type="text/plain" style="width:700px;height:300px;"></script>
+                                	<textarea id="editor" name="content" style="width:700px;height:300px;"></textarea>
+                                	<!-- <script id="editor" type="text/plain" style="width:700px;height:300px;"></script> -->
                                 </div>
                             </div>
                             <div class="form-group">
@@ -72,25 +72,24 @@ $(function(){
 	$("#close").click(function(){
 		location.href="${pageContext.request.contextPath}/news/list";
 	});
-	
-	//富文本
-	var ue = UE.getEditor('editor',{
-		serverUrl:"",
-		toolbars:[[
-			'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-            'directionalityltr', 'directionalityrtl', 'indent', '|',
-            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'attachment', 'pagebreak', 'template', '|',
-            'horizontal', 'date', 'time', 'spechars','|',
-            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-            'preview', 'searchreplace', 'help', 'drafts'
-        ]]
-	});
-	
+});
+
+//富文本
+var ue = UE.getEditor('editor',{
+	serverUrl:"",
+	toolbars:[[
+		'fullscreen', 'source', '|', 'undo', 'redo', '|',
+        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+        'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+        'directionalityltr', 'directionalityrtl', 'indent', '|',
+        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'attachment', 'pagebreak', 'template', '|',
+        'horizontal', 'date', 'time', 'spechars','|',
+        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+        'preview', 'searchreplace', 'help', 'drafts'
+    ]]
 });
 
 /**
@@ -109,8 +108,7 @@ $("#form_add").validate({
 	},messages: {
 		
 	},submitHandler:function(form){
-		
-		return false;
+		alert(ue.getContent());
 	    $(form).attr("action","${pageContext.request.contextPath}/news/add");
 		form.submit();
 	}
