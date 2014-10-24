@@ -2,7 +2,7 @@ package com.dingding.background.service;
 
 import java.util.List;
 
-import com.dingding.background.domin.Tech;
+import com.dingding.background.domain.Tech;
 
 public interface TechService {
 

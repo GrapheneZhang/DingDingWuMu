@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.dingding.background.base.BaseServiceImpl;
-import com.dingding.background.domin.ProductType;
+import com.dingding.background.domain.ProductType;
 import com.dingding.background.service.ProductTypeService;
 
 @Service

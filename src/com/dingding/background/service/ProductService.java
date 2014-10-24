@@ -2,7 +2,7 @@ package com.dingding.background.service;
 
 import java.util.List;
 
-import com.dingding.background.domin.Product;
+import com.dingding.background.domain.Product;
 
 public interface ProductService {
 

@@ -11,13 +11,21 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:springMVC-servlet.xml,classpath*:mybatis-spring.xml</param-value>
+		<param-value>classpath*:mybatis-spring.xml</param-value>
 	</context-param>
 	
-	<!-- 让tomcat的默认servlet来处理静态资源 -->
+	<!-- 2、让tomcat的默认servlet来处理静态资源 -->
 	<servlet-mapping>   
 	    <servlet-name>default</servlet-name>  
 	    <url-pattern>*.jpg</url-pattern>     
+	</servlet-mapping>    
+	<servlet-mapping>   
+	    <servlet-name>default</servlet-name>  
+	    <url-pattern>*.gif</url-pattern>     
+	</servlet-mapping>    
+	<servlet-mapping>   
+	    <servlet-name>default</servlet-name>  
+	    <url-pattern>*.png</url-pattern>     
 	</servlet-mapping>    
 	<servlet-mapping>       
 	    <servlet-name>default</servlet-name>    
@@ -44,9 +52,9 @@
 	    <url-pattern>*.woff</url-pattern>      
 	</servlet-mapping>
   
-  	<!-- 2、指定SpringMVC的核心Servlet -->
+  	<!-- 3、指定SpringMVC的核心Servlet和其它自定义的Servlet -->
 	<servlet>
-		<servlet-name>SpringMVC</servlet-name>
+		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -54,13 +62,21 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup><!-- 此标签一定要在init-param之后 -->
 	</servlet>
+	<servlet>
+		<servlet-name>ueditorUploadServlet</servlet-name>
+		<servlet-class>com.dingding.utils.upload.controller.UeditorUpload</servlet-class>
+	</servlet>
 
    	<servlet-mapping>              
-		<servlet-name>SpringMVC</servlet-name>              
-		<url-pattern>/</url-pattern>       
+		<servlet-name>springMVC</servlet-name>              
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+   	<servlet-mapping>              
+		<servlet-name>ueditorUploadServlet</servlet-name>              
+		<url-pattern>/upload/ueditorUpload</url-pattern>
 	</servlet-mapping>
   
-   	<!-- 3、解决工程编码过滤器 -->  
+   	<!-- 4、解决工程编码过滤器 -->  
 	<filter>  
 		<filter-name>characterEncodingFilter</filter-name>
  		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
@@ -75,7 +91,7 @@
 	  	<url-pattern>/*</url-pattern>
 	</filter-mapping>         
   
-  	<!-- 4、配置错误页面--> 
+  	<!-- 5、配置错误页面--> 
 	<error-page>  
 		<exception-type>java.lang.Throwable</exception-type>  
 		<location>/commons/jsp/error500.jsp</location>
@@ -93,7 +109,7 @@
 		<location>/commons/jsp/error404.jsp</location>  
 	</error-page>  
   
-    <!-- 5、配置首页--> 
+    <!-- 6、配置首页--> 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

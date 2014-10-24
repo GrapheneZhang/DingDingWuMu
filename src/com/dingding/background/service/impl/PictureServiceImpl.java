@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.dingding.background.base.BaseServiceImpl;
-import com.dingding.background.domin.Picture;
+import com.dingding.background.domain.Picture;
 import com.dingding.background.service.PictureService;
 
 @Service

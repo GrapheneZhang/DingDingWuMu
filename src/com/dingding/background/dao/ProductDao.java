@@ -2,7 +2,7 @@ package com.dingding.background.dao;
 
 import java.util.List;
 
-import com.dingding.background.domin.Product;
+import com.dingding.background.domain.Product;
 
 public interface ProductDao {
 

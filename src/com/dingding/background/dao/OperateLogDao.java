@@ -3,7 +3,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.dingding.background.domin.OperateLog;
+import com.dingding.background.domain.OperateLog;
 
 public interface OperateLogDao{
 

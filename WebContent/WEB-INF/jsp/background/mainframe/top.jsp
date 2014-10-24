@@ -29,38 +29,11 @@
                         <!--<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo"/>-->
 								<span class="user-info">
 									<small>用户名:</small>
-									${user.loginName}（${user.userName}）
+									${CURRENT_USER.loginName}（${CURRENT_USER.userName}）
 								</span>
                                 <!-- <span class="caret"></span> -->
                     </a>
-                    <li class="light-blue"><a id="logout"><small><i class="glyphicon glyphicon-off"></i> &nbsp;注销</small></a></li>
-                   
-
-                  <!--   <ul class="user-menu pull-right dropdown-menu  dropdown-close">
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-wrench"></i>
-                                è®¾ç½®
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-user"></i>
-                                ä¸ªäººèµæ
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-off"></i>
-                                éåº
-                            </a>
-                        </li>
-                    </ul>
-                </li>-->
+                <li class="light-blue"><a id="logout"><small><i class="glyphicon glyphicon-off"></i> &nbsp;注销</small></a></li>
             </ul>
         </div>
     </div>

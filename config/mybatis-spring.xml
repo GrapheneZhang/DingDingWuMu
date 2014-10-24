@@ -13,51 +13,48 @@
            http://www.springframework.org/schema/mvc  
            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd" >
            
-  	<!-- ***************************Mybatis结合springMVC的配置********************************************** -->
+  	<!-- **通用SPRING容器配置:
+  	*	1)、容器配置
+  	*	2)、Mybatis结合springMVC的配置
+  	* -->
+  	
+  	<!-- 1、容器配置：组件扫描包括了<context:annotation-config/>(DI注解解析器)中的内容(@Resource@Autowired,etc..) -->
+	<context:component-scan base-package="com.dingding.background.dao,com.dingding.background.service.impl"/>
+	<context:component-scan base-package="com.dingding.proscenium.dao,com.dingding.proscenium.service.impl" />
   
-  	<!-- 1、导入数据库连接配置 classpath:-->
+  	<!-- 2、导入数据库连接配置 classpath:-->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
   
-  	<!-- 2、配置一个c3p0 Datasource -->
+  	<!-- 3、配置一个c3p0 Datasource -->
   	<bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
- 		<!-- 2.1连接信息-->
+ 		<!-- 3.1连接信息-->
 		<property name="jdbcUrl" value="${jdbcUrl}"></property>
 		<property name="driverClass" value="${driverClass}"></property>
 		<property name="user" value="${user}"></property>
 		<property name="password" value="${password}"></property>
-		
-		<!-- 2.2其它设置 -->
-		<!--初始化时获取3个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
-		<property name="initialPoolSize" value="3"></property>
-		<!--连接池中保留的最小连接数。Default: 3 -->
-		<property name="minPoolSize" value="3"></property>
-		<!--连接池中保留的最大连接数。Default: 15 -->
-		<property name="maxPoolSize" value="15"></property>
-		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
-		<property name="acquireIncrement" value="3"></property>
-		<!-- 控制数据源内加载的PreparedStatements数量。如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 -->
-		<property name="maxStatements" value="8"></property>
-		<!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
-		<property name="maxStatementsPerConnection" value="5"></property>
-		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
-		<property name="maxIdleTime" value="1800"></property>
-	  </bean>
-  
-  	<!-- 3、配置mybatis操作数据库的SqlSessionFactory -->
-	<bean id="mybatisSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >  
-		<!-- 3.1、指定SessionFactory的数据源 -->
-		<property name="dataSource" ref="c3p0DataSource"/>
-		<!-- 3.2、指定mybatis的 XML 配置文件路径 -->  
-		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- 3.2其它设置 -->
+		<property name="initialPoolSize" value="3"></property><!--初始化时获取3个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="minPoolSize" value="3"></property><!--连接池中保留的最小连接数。Default: 3 -->
+		<property name="maxPoolSize" value="15"></property><!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="acquireIncrement" value="3"></property><!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="maxStatements" value="8"></property><!-- 控制数据源内加载的PreparedStatements数量。如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 -->
+		<property name="maxStatementsPerConnection" value="5"></property><!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
+		<property name="maxIdleTime" value="1800"></property><!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
 	</bean>
   
-	<!--4、配置sqlsersion生产实例MapperScannerConfigurer配置-->
+  	<!-- 4、配置mybatis操作数据库的SqlSessionFactory -->
+	<bean id="mybatisSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >  
+		<property name="dataSource" ref="c3p0DataSource"/><!-- 4.1、指定SessionFactory的数据源 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/><!-- 4.2、指定mybatis的 XML 配置文件路径 -->
+	</bean>
+  
+	<!-- 5、配置sqlsession生产实例MapperScannerConfigurer配置-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--basePackage指定要扫描的包，在此包之下的映射器都会被搜索到。可指定多个包，包与包之间用逗号或分号分隔-->
-		<property name="basePackage" value="com.dingding.background.dao"/>
+		<property name="basePackage" value="com.dingding.background.dao,com.dingding.proscenium.dao"/>
 	</bean>
 	
-	<!-- 4、构造一个SqlSessionTemplate(和SqlSession一样)  暂时先不用这种方法
+	<!-- 6、构造一个SqlSessionTemplate(和SqlSession一样)  暂时先不用这种方法
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">  
 	     <constructor-arg index="0" ref="mybatisSessionFactory" /> 
 	</bean>  
