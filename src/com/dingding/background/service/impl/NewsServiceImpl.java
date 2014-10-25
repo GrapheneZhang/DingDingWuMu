@@ -19,12 +19,16 @@ import com.dingding.background.service.NewsService;
 public class NewsServiceImpl extends BaseServiceImpl implements NewsService{
 
 	/**1
+	public List<News> list(News news) {
+		return newsDao.list(news);
+	}*/
+	/**1
 	 * Describe:条件查询
 	 * Parameters:
 	 * @return:ModelAndView
 	 */
-	public List<News> list(News news) {
-		return newsDao.list(news);
+	public List<News> list(Map<String,Object> map) {
+		return newsDao.list(map);
 	}
 
 	/**2.1

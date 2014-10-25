@@ -15,21 +15,19 @@
 
 <!-- ProcessingStart -->
 <!-- 1 条件查询 -->
-<select id="list" parameterType="News" resultMap="NewsList">
-	select a.*,b.loginName as authorName from wm_news a
-	left join wm_user b on a.authorId=b.id
+<select id="list" parameterType="java.util.HashMap" resultMap="NewsList">
+	select a.*,b.loginName as authorName 
+	from wm_news a
+	inner join wm_user b on a.authorId=b.id
 	<where>
-		<if test="title!=null and title!=''">
-			and a.title LIKE '%'||#{title}||'%'<!-- CONCAT(CONCAT('%', #{title}),'%') -->
+		<if test="title !=null and title!=''">
+			and a.title LIKE CONCAT(CONCAT('%', #{title}),'%')
 		</if>
 		<if test="content!=null and content!=''">
-			and a.content LIKE '%'||#{content}||'%'
+			and a.content LIKE CONCAT(CONCAT('%', #{content}),'%')
 		</if>
-		<if test="authorId!=null and authorId!=''">
-			and a.authorId LIKE '%'||#{authorId}||'%'
-		</if>
-		<if test="authorName!=null and authorName!=''">
-			and b.loginName LIKE '%'||#{authorName}||'%'
+		<if test="authorName != null and authorName !='' ">
+			and b.loginName like CONCAT(CONCAT('%', #{authorName}),'%')
 		</if>
 		<if test="createTimeStart!=null and createTimeStart!=''">
 			<![CDATA[

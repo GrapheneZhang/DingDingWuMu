@@ -37,7 +37,7 @@
                             发布日期：<input type="text" placeholder="点击选择" id="createTimeStart" name="createTimeStart" value="${news.createTimeStart}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'createTimeEnd\')||\'2020\10\01 00:00:00\'}'})" />--
                  <input type="text" placeholder="点击选择" id="createTimeEnd" name="createTimeEnd" value="${news.createTimeEnd}" class="Wdate" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'createTimeStart\')}',maxDate:'2020\10\01 00:00:00'})" />&nbsp;
                  <input type="submit" id="search" value="搜索"/>&nbsp;
-                 <input type="reset" id="reset" value="重置"/>&nbsp;
+                 <input type="button" id="reset" value="重置"/>&nbsp;
 	        </span>
 	    </form>
 	</div>
@@ -170,6 +170,8 @@ $(function(){
 		$("#title").val("");
 		$("#content").val("");
 		$("#authorName").val("");
+		$("#createTimeStart").val("");
+		$("#createTimeEnd").val("");
 	});
 	
 });

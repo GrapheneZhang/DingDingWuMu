@@ -12,7 +12,8 @@ import com.dingding.background.domain.News;
  */
 public interface NewsService {
 
-	public List<News> list(News news);//1 条件查询
+	//public List<News> list(News news);//1 条件查询
+	public List<News> list(Map<String,Object> map);//1 条件查询
 	
 	public News getById(int id);//2 获取：通过Id
 	

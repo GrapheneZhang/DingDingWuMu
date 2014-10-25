@@ -1,12 +1,15 @@
 package com.dingding.background.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,6 +49,48 @@ public class NewsController extends BaseController{
 		try {
 			String str_pageNum = req.getParameter("pageNum")==null?"1":req.getParameter("pageNum");
 			String str_pageSize = req.getParameter("pageSize")==null?"10":req.getParameter("pageSize");
+			int pageNum = 0,pageSize = 0;
+			pageNum = Integer.parseInt(str_pageNum);
+			pageSize = Integer.parseInt(str_pageSize);
+			// 分页:页码，每页显示数量
+			PageHelper.startPage(pageNum, pageSize);
+			
+			//条件
+			Map<String,Object> map=new HashMap<String,Object>();
+			if(StringUtils.isNotBlank(news.getTitle()))
+				map.put("title", news.getTitle());
+			if(StringUtils.isNotBlank(news.getContent()))
+				map.put("content", news.getContent());
+			if(StringUtils.isNotBlank(news.getAuthorName()))
+				map.put("authorName", news.getAuthorName());
+			if(StringUtils.isNotBlank(news.getCreateTimeStart()))
+				map.put("createTimeStart", news.getCreateTimeStart());
+			if(StringUtils.isNotBlank(news.getCreateTimeEnd()))
+				map.put("createTimeEnd", news.getCreateTimeEnd());
+			
+			//操作
+			List<News> newsList=newsService.list(map);
+			
+			PageInfo<News> page = new PageInfo<News>(newsList);
+			mav.addObject("newsList", newsList);
+			mav.addObject("news", news);//条件查询
+			mav.addObject("page", page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	/**1
+	 * Describe:条件查询
+	 * Parameters:
+	 * @return:ModelAndView
+	
+	@RequestMapping(value="/list")
+	public ModelAndView list(HttpServletRequest req,News news){
+		mav=new ModelAndView("background/news/newslist");
+		try {
+			String str_pageNum = req.getParameter("pageNum")==null?"1":req.getParameter("pageNum");
+			String str_pageSize = req.getParameter("pageSize")==null?"10":req.getParameter("pageSize");
 			
 			int pageNum = 0,pageSize = 0;
 			
@@ -66,6 +111,7 @@ public class NewsController extends BaseController{
 		}
 		return mav;
 	}
+	 */
 	
 	/**2.1
 	 * Describe:新增页面
