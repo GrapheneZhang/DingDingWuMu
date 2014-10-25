@@ -177,16 +177,12 @@ public class NewsController extends BaseController{
 	 * @return:String
 	 */
 	@RequestMapping(value="/update")
-	public void update(HttpServletResponse response,News news){
+	public String update(HttpServletResponse response,News news){
 		try {
-			boolean result=false;
-			result=newsService.update(news);
-			PrintWriter writer=response.getWriter();
-			writer.write(String.valueOf(result));
-			writer.flush();
-			writer.close();
+			newsService.update(news);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "redirect:/news/list";
 	}
 }
