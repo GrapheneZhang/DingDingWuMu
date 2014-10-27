@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +21,14 @@
                         <span class="menu-text">系统管理</span>
                     </a>
                     <ul class="submenu">
+                    	<c:if test="${CURRENT_USER.privilege==49}">
                         <li>
                             <a href="${pageContext.request.contextPath}/user/list" target="mainFrame">
                             <i class="icon-double-angle-right"></i>
                            	用户管理
                             </a>
                         </li>
+                        </c:if>
                         <li>
                             <a href="informationclassify.html" target="mainFrame">操作记录管理 </a>
                         </li>
