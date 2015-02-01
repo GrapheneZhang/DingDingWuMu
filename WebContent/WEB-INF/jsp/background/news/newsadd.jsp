@@ -77,7 +77,6 @@ $(function(){
 
 //富文本
 var ue = UE.getEditor('editor',{
-	//serverUrl:"${pageContext.request.contextPath}/upload/ueditorUpload",
 	toolbars:[[
 		'fullscreen', 'source', '|', 'undo', 'redo', '|',
         'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',

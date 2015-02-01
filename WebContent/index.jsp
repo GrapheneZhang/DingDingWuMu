@@ -7,6 +7,7 @@
 	<title>用户列表页</title>
 </head>
 <body>
+	<a href="<%=request.getContextPath()%>/user/loginUI">后台管理系统</a>
 这是主页
 </body>
 </html>

@@ -10,29 +10,69 @@
 <result property="title" column="title"/>
 <result property="content" column="content"/>
 <result property="createTime" column="createtime"/>
+<result property="name" column="name"/>
 <result property="tel" column="tel"/>
 <result property="qq" column="qq"/>
-<result property="name" column="name"/>
 </resultMap>
 
 
-<insert id="add" parameterType="Words"
-useGeneratedKeys="true" keyProperty="id">
-insert into wm_words(title,content,createtime,tel,qq,name)
-values(#{title},#{content},#{createTime},#{tel},#{qq},#{name})
+<!-- ProcessingStart -->
+<!-- 1 条件查询 -->
+<select id="list" parameterType="java.util.HashMap" resultMap="WordsList">
+	select *
+	from wm_words
+	<where>
+		<if test="title !=null and title!=''">
+			and title LIKE CONCAT(CONCAT('%', #{title}),'%')
+		</if>
+		<if test="content!=null and content!=''">
+			and content LIKE CONCAT(CONCAT('%', #{content}),'%')
+		</if>
+		<if test="name != null and name !='' ">
+			and name like CONCAT(CONCAT('%', #{name}),'%')
+		</if>
+		<if test="createTimeStart!=null and createTimeStart!=''">
+			<![CDATA[
+				and UNIX_TIMESTAMP(createTime) >= UNIX_TIMESTAMP(#{createTimeStart})
+			]]>
+		</if>
+		<if test="createTimeEnd!=null and createTimeEnd!=''">
+			<![CDATA[
+				and UNIX_TIMESTAMP(createTime) <= UNIX_TIMESTAMP(#{createTimeEnd})
+			]]>
+		</if>
+	</where>
+	order by ID
+</select>
+
+<!-- 2 获取：通过Id -->
+<select id="getById" parameterType="int" resultType="Words">
+	select * from wm_words where ID=#{id}
+</select>
+
+<!-- 3 添加 -->
+<insert id="add" parameterType="Words" useGeneratedKeys="true" keyProperty="id">
+	insert into wm_words(
+		title,
+		content,
+		name,
+		tel,
+		qq,
+		createTime
+	)
+	values(
+		<![CDATA[#{title}]]>,
+		<![CDATA[#{content}]]>,
+		#{name},
+		#{tel},
+		#{qq},
+		CURDATE()
+	)
 </insert>
 
-<delete id="delete" parameterType="int">
-delete from wm_words where id=#{id}
+<!-- 4 删除 -->
+<delete id="delete" parameterType="Integer">
+	delete from wm_words where id=#{id}
 </delete>
 
-<select id="selectAll"   resultMap="WordsList">
-select *
-from wm_words  
-</select>
-
-<select id="selectDate" parameterType="Date"  resultMap="WordsList">
-select *
-from wm_words  where createtime between  #{begin} and  #{end}
-</select>
 </mapper>
